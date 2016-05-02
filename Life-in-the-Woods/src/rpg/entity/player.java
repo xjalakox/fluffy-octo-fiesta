@@ -1,18 +1,12 @@
 package rpg.entity;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Rectangle;
-
-import javax.swing.ImageIcon;
 
 import rpg.Game;
 import rpg.Handler;
 import rpg.Id;
 import rpg.KeyInput;
-import rpg.Loadingscreen;
 import rpg.gui.TextDraw;
 import rpg.tile.Tile;
 
