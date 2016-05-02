@@ -10,7 +10,7 @@ import rpg.entity.Entity;
 public class KeyInput implements KeyListener, FocusListener {
 	
 	private boolean[] keyStates;
-	public boolean up, left, down, right,running,escape,coordinate,enterdoor,enterdoor2,talk_npc;
+	public static boolean up, left, down, right,running,escape,coordinate,enterdoor,enterdoor2,talk_npc;
 	public static boolean inventory;
 	public static boolean debug;
 	
