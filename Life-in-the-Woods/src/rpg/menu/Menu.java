@@ -12,8 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import rpg.Loadingscreen;
-import rpg.Main;
-import rpg.menu.CustomCursor;
 
 
 

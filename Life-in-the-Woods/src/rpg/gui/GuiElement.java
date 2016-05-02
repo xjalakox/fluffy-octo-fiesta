@@ -1,8 +1,6 @@
 package rpg.gui;
 
 import java.awt.Graphics;
-import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
 
 public abstract class GuiElement {
 	protected int x;

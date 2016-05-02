@@ -5,7 +5,6 @@ package rpg;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -32,7 +31,6 @@ import rpg.gui.GuiButton;
 import rpg.gui.GuiMap;
 import rpg.gui.TextDraw;
 import rpg.json.JSONDecoder;
-import rpg.tile.Tile;
 
 
 @SuppressWarnings("serial")
