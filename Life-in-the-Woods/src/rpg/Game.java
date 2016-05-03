@@ -73,6 +73,8 @@ public class Game extends Canvas implements Runnable {
 	
 	public static Handler handler;
 	
+	
+	
 	public Image scrolltext_bg = new ImageIcon(this.getClass().getResource("/Scrolltext/background.png")).getImage();;
 	public ImageObserver observer;
 	Inventory inv = new Inventory();
@@ -187,45 +189,64 @@ public class Game extends Canvas implements Runnable {
 			map.setVisible(false);
 			gui.addGuiElement(map);
 			
-			GuiButton cancel = new GuiButton(1750, 20, ImageIO.read(new File("res/Gui/cancel.png")), new GuiAction() {
+			GuiButton inventory = new GuiButton(230, 20, ImageIO.read(new File("res/Inventory/inv.png")), new GuiAction() {
+				public void action() {
+
+				}
+			});
+			inventory.setVisible(false);
+			gui.addGuiElement(inventory);
+			
+			GuiButton player = new GuiButton(1100, 290, ImageIO.read(new File("res/Inventory/player.png")), new GuiAction() {
+				public void action() {
+
+				}
+			});
+			player.setVisible(false);
+			gui.addGuiElement(player);
+			
+			GuiButton cancel_button = new GuiButton(1750, 20, ImageIO.read(new File("res/Buttons/cancel.png")), new GuiAction() {
 				public void action() {
 					System.exit(0);
 				}
 			});
-			gui.addGuiElement(cancel);
+			cancel_button.setVisible(false);
+			gui.addGuiElement(cancel_button);
 			
-			GuiButton health = new GuiButton(20, 950, ImageIO.read(new File("res/Gui/health.png")), new GuiAction() {
+			GuiButton health_button = new GuiButton(20, 950, ImageIO.read(new File("res/Buttons/health.png")), new GuiAction() {
 				public void action() {
 					
 				}
 			});
-			gui.addGuiElement(health);
+			gui.addGuiElement(health_button);
 			
 			
-			GuiButton menu = new GuiButton(1770, 930, ImageIO.read(new File("res/Gui/menu.png")), new GuiAction() {
+			GuiButton menu_button = new GuiButton(1770, 930, ImageIO.read(new File("res/Buttons/menu.png")), new GuiAction() {
 				public void action() {
 					
 				}
 			});
-			gui.addGuiElement(menu);
+			gui.addGuiElement(menu_button);
 			
-			GuiButton inventory = new GuiButton(1620, 930, ImageIO.read(new File("res/Gui/inventory.png")), new GuiAction() {
+			GuiButton inventory_button = new GuiButton(1620, 930, ImageIO.read(new File("res/Buttons/inventory.png")), new GuiAction() {
+				public void action() {
+					inventory.setVisible(!inventory.isVisible());
+					player.setVisible(!player.isVisible());
+				}
+			});
+			gui.addGuiElement(inventory_button);
+			
+			GuiButton quest_button = new GuiButton(1460, 935, ImageIO.read(new File("res/Buttons/quest.png")), new GuiAction() {
 				public void action() {
 					
 				}
 			});
-			gui.addGuiElement(inventory);
+			gui.addGuiElement(quest_button);
 			
-			GuiButton quest = new GuiButton(1460, 935, ImageIO.read(new File("res/Gui/quest.png")), new GuiAction() {
-				public void action() {
-					
-				}
-			});
-			gui.addGuiElement(quest);
-			
-			GuiButton map_button = new GuiButton(30, 840, ImageIO.read(new File("res/Gui/map_button.png")), new GuiAction() {
+			GuiButton map_button = new GuiButton(30, 840, ImageIO.read(new File("res/Buttons/map_button.png")), new GuiAction() {
 				public void action() {
 					map.setVisible(!map.isVisible());
+					KeyInput.key_enable = !KeyInput.key_enable;
 				}
 			});
 			gui.addGuiElement(map_button);	

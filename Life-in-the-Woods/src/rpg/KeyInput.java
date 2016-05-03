@@ -13,6 +13,7 @@ public class KeyInput implements KeyListener, FocusListener {
 	public static boolean up, left, down, right,running,escape,coordinate,enterdoor,enterdoor2,talk_npc;
 	public static boolean inventory;
 	public static boolean debug;
+	public static boolean key_enable = true;
 	
 	public KeyInput() {
 		keyStates = new boolean[65536];

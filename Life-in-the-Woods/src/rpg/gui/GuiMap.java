@@ -69,6 +69,9 @@ public class GuiMap extends GuiElement {
 		}else if(moveY < -260){
 			moveY = -260;
 			}
+		}else{
+		moveX = 0;
+		moveY = 0;
 		}
 	}
 

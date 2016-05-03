@@ -48,6 +48,7 @@ public class player extends Entity {
 			System.out.println("X: " + getX() + "Y: " + getY());
 		}
 		if(!collision()) {
+			if(KeyInput.key_enable){
 			if(key.up) {
 				if(key.running)y -=6; else y-=3;
 				animate();
@@ -63,6 +64,7 @@ public class player extends Entity {
 			}
 		}
 	}
+}
 
 	private boolean collision() {
 		for(Tile t : rpg.Game.handler.tile){
