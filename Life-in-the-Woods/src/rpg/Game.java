@@ -75,7 +75,7 @@ public class Game extends Canvas implements Runnable {
 	
 	
 	
-	public Image scrolltext_bg = new ImageIcon(this.getClass().getResource("/Scrolltext/background.png")).getImage();;
+	public Image scrolltext_bg = new ImageIcon(this.getClass().getResource("/Scrolltext/background.png")).getImage();
 	public ImageObserver observer;
 	Inventory inv = new Inventory();
 	Gui gui = new Gui();

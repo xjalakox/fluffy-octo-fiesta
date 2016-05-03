@@ -20,7 +20,7 @@ public class door extends Tile {
 		g.drawImage(Game.sprites[(int) arrayzahl].getBufferedImage(), x*2,y*2,w*2,h*2, null);
 		g.setColor(Color.GREEN);
 		//g.drawRect(getX()*2, getY()*2+50, getW()*2, getH()*2-50);
-		g.drawRect(getX()*2, getY()*2+64, getW()*2, getH()*2-54);
+		g.drawRect(getX()*2, getY()*2+44, getW()*2, getH()*2-54);
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class door extends Tile {
 	}
 
 	public Rectangle getBoundsBottom(){
-		return new Rectangle(getX()*2, getY()*2+64, getW()*2, getH()*2-54);
+		return new Rectangle(getX()*2, getY()*2+44, getW()*2, getH()*2-54);
 	}
 
 }

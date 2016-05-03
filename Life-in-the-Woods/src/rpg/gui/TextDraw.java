@@ -42,7 +42,6 @@ public class TextDraw {
 	
 	public void tick() {
 		time++;
-		System.out.println(time);
 		if(!text.isEmpty()&&text.length()>cur) {
 			drawing = true;
 			if(time % 4 == 0){

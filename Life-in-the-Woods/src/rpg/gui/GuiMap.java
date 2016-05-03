@@ -30,7 +30,7 @@ public class GuiMap extends GuiElement {
 	public void render(Graphics g) {
 		
 		g.drawImage(border, x, y, w, h, null);
-		g.drawImage(image, x + 29, y + 28, x + w - 29, y + h - 28, mapX * zoom + moveX , mapY * zoom + moveY, 1160 - mapX * zoom + moveX, 876 - mapY * zoom + moveY, null);
+		g.drawImage(image, x + 29, y + 28, x + w - 29, y + h - 28, mapX * zoom  + moveX, mapY * zoom + moveY, 1160 - mapX * zoom + moveX, 876 - mapY * zoom + moveY, null);
 
 	}
 
@@ -45,7 +45,7 @@ public class GuiMap extends GuiElement {
 			this.zoom = 260;
 			return;
 		}
-		this.zoom += (-MouseInput.getWheelRotation())*20;
+		this.zoom += (-MouseInput.getWheelRotation())*10;
 		MouseInput.setWheelRotation(0);
 		
 		/* Map Move*/

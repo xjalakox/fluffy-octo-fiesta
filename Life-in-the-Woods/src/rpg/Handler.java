@@ -138,7 +138,6 @@ public class Handler {
 
 		for(int j=0;j<=21;j++){
 			long opacity = (long)((JSONObject)((JSONArray)map1.get("layers")).get(j)).get("opacity");
-			
 				if(opacity==1){
 					JSONArray data = (JSONArray)((JSONObject)((JSONArray)map1.get("layers")).get(j)).get("data");
 					System.out.println("Welt wird geladen: " + j);
