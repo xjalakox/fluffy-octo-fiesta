@@ -41,7 +41,7 @@ public class player extends Entity {
 			anim = 3;
 		}
 
-		//g.drawRect(getX()+7, getY()+65, getW()-14, getH()-65);
+		///g.drawRect(getX()+7, getY()+65, getW()-14, getH()-65);
 	}
 
 	@Override
