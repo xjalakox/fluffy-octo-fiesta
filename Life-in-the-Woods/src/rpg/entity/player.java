@@ -57,7 +57,7 @@ public class player extends Entity {
 			}
 		}
 		if(!collision()) {
-			if(KeyInput.key_enable){
+			if(KeyInput.key_enable){//
 				if(KeyInput.up) {
 					if(key.running)y -=6; else y-=3;
 					animate();
