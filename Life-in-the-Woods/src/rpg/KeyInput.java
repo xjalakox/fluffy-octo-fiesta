@@ -35,20 +35,7 @@ public class KeyInput implements KeyListener, FocusListener {
 		}else{
 			
 		}
-		if(enterdoor&&enterdoor2){
-			for(Entity en:Game.handler.entity) {
-				if(en.getId()==Id.player){
-					try {
-						Thread.sleep(500);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					en.setY(en.getY()-100);
-					Handler.g.setX(en.getX());
-					Handler.g.setY(en.getY());
-				}
-			}
+		if(enterdoor2){
 			rpg.Game.handler.clearLevel();
 			rpg.Game.handler.createLevel(rpg.Game.map1_noroof);
 		}
@@ -57,6 +44,7 @@ public class KeyInput implements KeyListener, FocusListener {
 				if(en.getId()==Id.player){
 					Handler.g.setX(en.getX());
 					Handler.g.setY(en.getY());
+					KeyInput.key_enable = true;	
 				}
 			}
 			System.exit(0);

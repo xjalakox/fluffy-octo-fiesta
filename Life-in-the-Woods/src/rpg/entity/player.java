@@ -13,7 +13,7 @@ import rpg.tile.Tile;
 public class player extends Entity {
 	int frame = 0, frameDelay = 0;
 	private KeyInput key;
-	private int anim;
+	private int anim, door;
 
 	public player(int x, int y, int w, int h, Id id, Handler handler, KeyInput key) {
 		super(x, y, w, h, id, handler);
@@ -47,24 +47,33 @@ public class player extends Entity {
 		if(key.coordinate){
 			System.out.println("X: " + getX() + "Y: " + getY());
 		}
-		if(!collision()) {
-			if(KeyInput.key_enable){
-			if(key.up) {
-				if(key.running)y -=6; else y-=3;
-				animate();
-			} else if(key.down) {
-				if(key.running)y +=6; else y+=3;
-				animate();
-			} else if(key.right) {
-				if(key.running)x +=6; else x+=3;
-				animate();
-			} else if(key.left) {
-				if(key.running)x -=6; else x-=3;
-				animate();
+		if(door>0){
+			y-=3;
+			System.out.println(door);
+		}else{
+			if(!KeyInput.key_enable){
+				KeyInput.key_enable = true;
 			}
 		}
+		if(!collision()) {
+			if(KeyInput.key_enable){
+				if(key.up) {
+					if(key.running)y -=6; else y-=3;
+					animate();
+				} else if(key.down) {
+					if(key.running)y +=6; else y+=3;
+					animate();
+				} else if(key.right) {
+					if(key.running)x +=6; else x+=3;
+					animate();
+				} else if(key.left) {
+					if(key.running)x -=6; else x-=3;
+					animate();
+				}
+			}
+		}
+		door--;
 	}
-}
 
 	private boolean collision() {
 		for(Tile t : rpg.Game.handler.tile){
@@ -72,8 +81,14 @@ public class player extends Entity {
 				if(getBounds().intersects(t.getBoundsBottom())){
 					for(Entity en:Game.handler.entity) {
 						if(en.getId()==Id.player){
+							//Handler.g.setX(en.getX());
+							//Handler.g.setY(en.getY());
 							key.enterdoor2 = true;
+							door = 25;
+							KeyInput.key_enable = false;	
+							
 						}
+						key.enterdoor2 = false;
 					}
 				}
 			}else if(t.getId()==Id.obj){
