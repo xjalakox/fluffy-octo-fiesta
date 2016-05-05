@@ -10,7 +10,16 @@ import rpg.entity.Entity;
 public class KeyInput implements KeyListener, FocusListener {
 	
 	private boolean[] keyStates;
-	public static boolean up, left, down, right,running,escape,coordinate,enterdoor,enterdoor2,talk_npc;
+	public static boolean up;
+	public static boolean left;
+	public static boolean down;
+	public static boolean right;
+	public boolean running;
+	public boolean escape;
+	public boolean coordinate;
+	public boolean enterdoor;
+	public boolean enterdoor2;
+	public boolean talk_npc;
 	public static boolean inventory;
 	public static boolean debug;
 	public static boolean key_enable = true;
@@ -30,14 +39,13 @@ public class KeyInput implements KeyListener, FocusListener {
 		escape = keyStates[KeyEvent.VK_ESCAPE];
 		talk_npc = keyStates[KeyEvent.VK_ENTER];
 		coordinate = keyStates[KeyEvent.VK_0];
-		if(enterdoor2) {
-			enterdoor = keyStates[KeyEvent.VK_F];
-		}else{
-			
-		}
 		if(enterdoor2){
-			rpg.Game.handler.clearLevel();
-			rpg.Game.handler.createLevel(rpg.Game.map1_noroof);
+			if(enterdoor){
+				rpg.Game.handler.clearLevel();
+				rpg.Game.handler.createLevel(rpg.Game.map1_noroof,Game.handler.g.getX(),Game.handler.g.getY());
+			
+				rpg.entity.player.door = 50;
+			}
 		}
 		if(escape){
 			for(Entity en:Game.handler.entity) {

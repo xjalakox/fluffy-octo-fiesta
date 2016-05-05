@@ -103,9 +103,9 @@ public class Handler {
        }
     }
 	
-	public void ChangeLevel(String levelPath){
+	public void ChangeLevel(String levelPath, int x,int y){
 		Game.handler.clearLevel();
-		Game.handler.createLevel(levelPath);
+		Game.handler.createLevel(levelPath,x,y);
 	}
 	
 	public void ChangeMusic(int newMusicID, int oldMusicID, boolean running){
@@ -123,11 +123,11 @@ public class Handler {
 	}
 
 	
-	public void createLevel(String file){
+	public void createLevel(String file,int x,int y){
 
 		
 		addEntity(new npc(2500,2500,60,84,Id.blacksmith,this));
-		addEntity(new player(g.getX(),g.getY(),60,84,Id.player,this, Game.key)); 
+		addEntity(new player(x,y,60,84,Id.player,this, Game.key)); 
 
 		
 		JSONObject map1 = JSONDecoder.loadMapData(file);
@@ -140,7 +140,7 @@ public class Handler {
 			long opacity = (long)((JSONObject)((JSONArray)map1.get("layers")).get(j)).get("opacity");
 				if(opacity==1){
 					JSONArray data = (JSONArray)((JSONObject)((JSONArray)map1.get("layers")).get(j)).get("data");
-					System.out.println("Welt wird geladen: " + j);
+					//System.out.println("Welt wird geladen: " + j);
 					for(int i=0;i<data.size();i++){
 						long ids = (long) data.get(i);
 						if(i % 100 == 0){

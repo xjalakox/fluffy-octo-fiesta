@@ -280,7 +280,7 @@ public class Game extends Canvas implements Runnable {
     	}
     	
     	handler.ChangeMusic(1,1,false);
-    	handler.ChangeLevel("res/Maps/map1_roof.json");
+    	handler.ChangeLevel("res/Maps/map1_roof.json",Handler.g.getX(),Handler.g.getY());
 		
 		
 		

@@ -13,7 +13,9 @@ import rpg.tile.Tile;
 public class player extends Entity {
 	int frame = 0, frameDelay = 0;
 	private KeyInput key;
-	private int anim, door;
+	private int anim;
+	private boolean opendoor;
+	public static int door;
 
 	public player(int x, int y, int w, int h, Id id, Handler handler, KeyInput key) {
 		super(x, y, w, h, id, handler);
@@ -23,18 +25,18 @@ public class player extends Entity {
 
 	@Override
 	public void render(Graphics g) {
-		if(!key.left&&!key.up&&!key.down&&!key.right){
+		if(!KeyInput.left&&!KeyInput.up&&!KeyInput.down&&!KeyInput.right){
 			g.drawImage(Game.player[anim*9].getBufferedImage(), x, y, w, h, null);
-		}else if(!key.left&&!key.right&&!key.up){
+		}else if(!KeyInput.left&&!KeyInput.right&&!KeyInput.up){
 			g.drawImage(Game.player[18+frame].getBufferedImage(), x,y,w,h, null);
 			anim = 2;
-		}else if(!key.left&&!key.right&&!key.down){
+		}else if(!KeyInput.left&&!KeyInput.right&&!KeyInput.down){
 			g.drawImage(Game.player[0+frame].getBufferedImage(), x,y,w,h, null);
 			anim = 0;
-		}else if(!key.up&&!key.right&&!key.down){
+		}else if(!KeyInput.up&&!KeyInput.right&&!KeyInput.down){
 			g.drawImage(Game.player[9+frame].getBufferedImage(), x,y,w,h, null);
 			anim = 1;
-		}else if(!key.left&&!key.up&&!key.down){
+		}else if(!KeyInput.left&&!KeyInput.up&&!KeyInput.down){
 			g.drawImage(Game.player[27+frame].getBufferedImage(), x,y,w,h, null);
 			anim = 3;
 		}
@@ -49,7 +51,6 @@ public class player extends Entity {
 		}
 		if(door>0){
 			y-=3;
-			System.out.println(door);
 		}else{
 			if(!KeyInput.key_enable){
 				KeyInput.key_enable = true;
@@ -57,16 +58,16 @@ public class player extends Entity {
 		}
 		if(!collision()) {
 			if(KeyInput.key_enable){
-				if(key.up) {
+				if(KeyInput.up) {
 					if(key.running)y -=6; else y-=3;
 					animate();
-				} else if(key.down) {
+				} else if(KeyInput.down) {
 					if(key.running)y +=6; else y+=3;
 					animate();
-				} else if(key.right) {
+				} else if(KeyInput.right) {
 					if(key.running)x +=6; else x+=3;
 					animate();
-				} else if(key.left) {
+				} else if(KeyInput.left) {
 					if(key.running)x -=6; else x-=3;
 					animate();
 				}
@@ -76,63 +77,64 @@ public class player extends Entity {
 	}
 
 	private boolean collision() {
-		for(Tile t : rpg.Game.handler.tile){
+		for(Tile t : Handler.tile){
 			if(t.getId()==Id.door){
 				if(getBounds().intersects(t.getBoundsBottom())){
-					for(Entity en:Game.handler.entity) {
-						if(en.getId()==Id.player){
-							//Handler.g.setX(en.getX());
-							//Handler.g.setY(en.getY());
-							key.enterdoor2 = true;
-							door = 25;
+					for(Entity en:Handler.entity){
+						if(en.getId()==Id.player&&key.enterdoor==false&&opendoor==false){
+							Handler.g.setX(en.getX());
+							Handler.g.setY(en.getY());
 							KeyInput.key_enable = false;	
-							
+							key.enterdoor2 = true;
+							key.enterdoor = true;
+							opendoor = true;
+						}else{
+							key.enterdoor = false;
 						}
-						key.enterdoor2 = false;
 					}
 				}
 			}else if(t.getId()==Id.obj){
 				if(getBounds().intersects(t.getBoundsBottom())){
-					key.up = false;
+					KeyInput.up = false;
 				}
 				if(getBounds().intersects(t.getBoundsRight())){
-					key.left = false;
+					KeyInput.left = false;
 				}
 				if(getBounds().intersects(t.getBoundsLeft())){
-					key.right = false;
+					KeyInput.right = false;
 				}
 				if(getBounds().intersects(t.getBoundsTop())){
-					key.down = false;
+					KeyInput.down = false;
 				}
 			}
 		}
 		
-		for(Entity en:Game.handler.entity) {
+		for(Entity en:Handler.entity) {
 			if(en.getId()==Id.blacksmith){
 				if(getBounds().intersects(en.getBoundsBottom())){
 					if(key.talk_npc){
 						en.facing = 2;
 						TextDraw.drawText(1);
 					}
-					key.up = false;
+					KeyInput.up = false;
 				}
 				if(getBounds().intersects(en.getBoundsRight())){
 					if(key.talk_npc){
 						en.facing = 3;
 					}
-					key.left = false;
+					KeyInput.left = false;
 				}
 				if(getBounds().intersects(en.getBoundsLeft())){
 					if(key.talk_npc){
 						en.facing = 1;
 					}
-					key.right = false;
+					KeyInput.right = false;
 				}
 				if(getBounds().intersects(en.getBoundsTop())){
 					if(key.talk_npc){
 						en.facing = 0;
 					}
-					key.down = false;
+					KeyInput.down = false;
 				}
 			}
 		}
