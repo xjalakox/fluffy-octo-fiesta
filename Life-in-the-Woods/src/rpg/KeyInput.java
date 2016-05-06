@@ -19,6 +19,8 @@ public class KeyInput implements KeyListener, FocusListener {
 	public boolean coordinate;
 	public boolean enterdoor;
 	public boolean enterdoor2;
+	public boolean enterdoor3;
+	public boolean enterdoor4;
 	public boolean talk_npc;
 	public static boolean inventory;
 	public static boolean debug;
@@ -45,6 +47,14 @@ public class KeyInput implements KeyListener, FocusListener {
 				rpg.Game.handler.createLevel(rpg.Game.map1_noroof,Game.handler.g.getX(),Game.handler.g.getY());
 			
 				rpg.entity.player.door = 50;
+			}
+		}
+		if(enterdoor3){
+			if(enterdoor4){
+				rpg.Game.handler.clearLevel();
+				rpg.Game.handler.createLevel(rpg.Game.map1_roof,Game.handler.g.getX(),Game.handler.g.getY());
+			
+				rpg.entity.player.door2 = 50;
 			}
 		}
 		if(escape){

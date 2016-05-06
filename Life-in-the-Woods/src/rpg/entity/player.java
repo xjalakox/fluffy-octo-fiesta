@@ -15,7 +15,10 @@ public class player extends Entity {
 	private KeyInput key;
 	private int anim;
 	private boolean opendoor;
+	private boolean opendoor2;
+	private boolean doorup;
 	public static int door;
+	public static int door2;
 
 	public player(int x, int y, int w, int h, Id id, Handler handler, KeyInput key) {
 		super(x, y, w, h, id, handler);
@@ -51,13 +54,18 @@ public class player extends Entity {
 		}
 		if(door>0){
 			y-=3;
-		}else{
-			if(!KeyInput.key_enable){
-				KeyInput.key_enable = true;
-			}
+		}
+		if(door==1){
+			doorup = true;
+		}
+		if(door2>0){
+			y+=3;
+		}
+		if(door2==1){
+			doorup = false;
 		}
 		if(!collision()) {
-			if(KeyInput.key_enable){//
+			if(KeyInput.key_enable){
 				if(KeyInput.up) {
 					if(key.running)y -=6; else y-=3;
 					animate();
@@ -74,6 +82,7 @@ public class player extends Entity {
 			}
 		}
 		door--;
+		door2--;
 	}
 
 	private boolean collision() {
@@ -81,15 +90,31 @@ public class player extends Entity {
 			if(t.getId()==Id.door){
 				if(getBounds().intersects(t.getBoundsBottom())){
 					for(Entity en:Handler.entity){
-						if(en.getId()==Id.player&&key.enterdoor==false&&opendoor==false){
+						if(en.getId()==Id.player&&!key.enterdoor&&!opendoor&&!doorup){
 							Handler.g.setX(en.getX());
 							Handler.g.setY(en.getY());
-							KeyInput.key_enable = false;	
 							key.enterdoor2 = true;
 							key.enterdoor = true;
 							opendoor = true;
+							opendoor2 = false;
 						}else{
 							key.enterdoor = false;
+							key.enterdoor2 = false;
+						}
+					}
+				}
+				if(getBounds().intersects(t.getBoundsBottom())){
+					for(Entity en:Handler.entity){
+						if(en.getId()==Id.player&&!key.enterdoor3&&!opendoor2&&doorup){
+							Handler.g.setX(en.getX());
+							Handler.g.setY(en.getY());
+							key.enterdoor4 = true;
+							key.enterdoor3 = true;
+							opendoor2 = true;
+							opendoor = false;
+						}else{
+							key.enterdoor3 = false;
+							key.enterdoor4 = false;
 						}
 					}
 				}

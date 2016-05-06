@@ -156,7 +156,7 @@ public class Handler {
 							addTile(new obj(a*32,b*32,32,32,Id.nocollision,this,false,(long) data.get(i)));
 						}else if(ids==193&&j!=2){
 							addTile(new obj(a*32,b*32,32,32,Id.ground,this,false,(long) data.get(i)));
-						}else if(ids>=2297&&ids<=2488&&j!=2){
+						}else if(ids>=2297&&ids<=2488&&j!=2&&j!=2302){
 							addTile(new door(a*32,b*32,32,32,Id.door,this,true,(long) data.get(i)));
 						}else if(ids<=4000&&ids>=0&&j!=2){
 							addTile(new obj(a*32,b*32,32,32,Id.obj,this,true,(long) data.get(i)));
