@@ -8,21 +8,21 @@ import rpg.Handler;
 import rpg.Id;
 import rpg.KeyInput;
 import rpg.gui.TextDraw;
+import rpg.level.Level;
 import rpg.tile.Tile;
 
-public class player extends Entity {
+public class Player extends Entity {
 	int frame = 0, frameDelay = 0;
+	public boolean changeLevel = false;
 	private KeyInput key;
+	private Level level;
 	private int anim;
-	private boolean opendoor;
-	private boolean opendoor2;
-	private boolean doorup;
-	public static int door;
-	public static int door2;
 
-	public player(int x, int y, int w, int h, Id id, Handler handler, KeyInput key) {
-		super(x, y, w, h, id, handler);
+	public Player(int x, int y, int w, int h, Id id, Level l, KeyInput key) {
+		super(x, y, w, h, id);
+		this.level = l;
 		this.key = key;
+		changeLevel = false;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -44,7 +44,7 @@ public class player extends Entity {
 			anim = 3;
 		}
 
-		///g.drawRect(getX()+7, getY()+65, getW()-14, getH()-65);
+		g.drawRect(getX()+7, getY()+65, getW()-14, getH()-65);
 	}
 
 	@Override
@@ -52,72 +52,58 @@ public class player extends Entity {
 		if(key.coordinate){
 			System.out.println("X: " + getX() + "Y: " + getY());
 		}
-		if(door>0){
-			y-=3;
-		}
-		if(door==1){
-			doorup = true;
-		}
-		if(door2>0){
-			y+=3;
-		}
-		if(door2==1){
-			doorup = false;
-		}
 		if(!collision()) {
 			if(KeyInput.key_enable){
 				if(KeyInput.up) {
-					if(key.running)y -=6; else y-=3;
+					if(key.running){
+						y -=6; 
+					}else{
+						y-=3;
+					}
 					animate();
 				} else if(KeyInput.down) {
-					if(key.running)y +=6; else y+=3;
+					if(key.running){
+						y +=6; 
+					}else{
+						y+=3;
+					}
 					animate();
 				} else if(KeyInput.right) {
-					if(key.running)x +=6; else x+=3;
+					if(key.running){
+						x +=6; 
+					}else{
+						x+=3;
+					}
 					animate();
 				} else if(KeyInput.left) {
-					if(key.running)x -=6; else x-=3;
+					if(key.running){
+						x -=6; 
+					}else{
+						x-=3;
+					}
 					animate();
+				}else{
 				}
 			}
 		}
-		door--;
-		door2--;
 	}
 
 	private boolean collision() {
-		for(Tile t : Handler.tile){
+		for(Tile t : level.tiles){
 			if(t.getId()==Id.door){
-				if(getBounds().intersects(t.getBoundsBottom())){
-					for(Entity en:Handler.entity){
-						if(en.getId()==Id.player&&!key.enterdoor&&!opendoor&&!doorup){
-							Handler.g.setX(en.getX());
-							Handler.g.setY(en.getY());
-							key.enterdoor2 = true;
-							key.enterdoor = true;
-							opendoor = true;
-							opendoor2 = false;
-						}else{
-							key.enterdoor = false;
-							key.enterdoor2 = false;
-						}
-					}
+				if(getBounds().intersects(t.getBoundsBottom())&& !changeLevel) {
+					Handler.g.setX(level.getPlayer().getX());
+					Handler.g.setY(level.getPlayer().getY());
+					Game.changeLevel(Level.MAP_NOROOF,0,-100);
+					changeLevel = true;
+					System.out.println("change level in");
 				}
-				if(getBounds().intersects(t.getBoundsBottom())){
-					for(Entity en:Handler.entity){
-						if(en.getId()==Id.player&&!key.enterdoor3&&!opendoor2&&doorup){
-							Handler.g.setX(en.getX());
-							Handler.g.setY(en.getY());
-							key.enterdoor4 = true;
-							key.enterdoor3 = true;
-							opendoor2 = true;
-							opendoor = false;
-						}else{
-							key.enterdoor3 = false;
-							key.enterdoor4 = false;
-						}
-					}
+				if(getBounds().intersects(t.getBoundsTop())&& !changeLevel) {
+					Game.changeLevel(Level.MAP,0,100);
+					changeLevel = true;
+					System.out.println("change level out");
 				}
+
 			}else if(t.getId()==Id.obj){
 				if(getBounds().intersects(t.getBoundsBottom())){
 					KeyInput.up = false;
@@ -133,8 +119,7 @@ public class player extends Entity {
 				}
 			}
 		}
-		
-		for(Entity en:Handler.entity) {
+		for(Entity en:  level.entities) {
 			if(en.getId()==Id.blacksmith){
 				if(getBounds().intersects(en.getBoundsBottom())){
 					if(key.talk_npc){
@@ -163,8 +148,6 @@ public class player extends Entity {
 				}
 			}
 		}
-		
-		
 		
 		return false;
 	}
