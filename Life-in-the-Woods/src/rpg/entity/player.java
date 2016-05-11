@@ -4,16 +4,19 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import rpg.Game;
-import rpg.Handler;
 import rpg.Id;
 import rpg.KeyInput;
 import rpg.gui.TextDraw;
 import rpg.level.Level;
 import rpg.tile.Tile;
 
+
+import static rpg.Handler.g;
+
+
 public class Player extends Entity {
 	int frame = 0, frameDelay = 0;
-	public boolean changeLevel = false;
+	public boolean changeLevel;
 	private KeyInput key;
 	private Level level;
 	private int anim;
@@ -23,7 +26,6 @@ public class Player extends Entity {
 		this.level = l;
 		this.key = key;
 		changeLevel = false;
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -51,6 +53,16 @@ public class Player extends Entity {
 	public void tick() {
 		if(key.coordinate){
 			System.out.println("X: " + getX() + "Y: " + getY());
+		}
+		if(key.escape) {
+			for(Entity en: level.entities) {
+				if(en.getId()==Id.player){
+					g.setX(en.getX());
+					g.setY(en.getY());
+					KeyInput.key_enable = true;	
+				}
+			}
+			System.exit(0);
 		}
 		if(!collision()) {
 			if(KeyInput.key_enable){
@@ -92,14 +104,14 @@ public class Player extends Entity {
 		for(Tile t : level.tiles){
 			if(t.getId()==Id.door){
 				if(getBounds().intersects(t.getBoundsBottom())&& !changeLevel) {
-					Handler.g.setX(level.getPlayer().getX());
-					Handler.g.setY(level.getPlayer().getY());
+					g.setX(level.getPlayer().getX());
+					g.setY(level.getPlayer().getY());
 					Game.changeLevel(Level.MAP_NOROOF,0,-100);
 					changeLevel = true;
 					System.out.println("change level in");
 				}
 				if(getBounds().intersects(t.getBoundsTop())&& !changeLevel) {
-					Game.changeLevel(Level.MAP,0,100);
+					Game.changeLevel(Level.MAP,0,50);
 					changeLevel = true;
 					System.out.println("change level out");
 				}

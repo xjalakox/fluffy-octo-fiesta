@@ -12,10 +12,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 import org.json.simple.JSONArray;
@@ -25,9 +22,6 @@ import rpg.entity.Entity;
 import rpg.gfx.Sprite;
 import rpg.gfx.SpriteSheet;
 import rpg.gui.Gui;
-import rpg.gui.GuiAction;
-import rpg.gui.GuiButton;
-import rpg.gui.GuiMap;
 import rpg.gui.TextDraw;
 import rpg.json.JSONDecoder;
 import rpg.level.Level;
@@ -53,6 +47,7 @@ public class Game extends Canvas implements Runnable {
 	public static Camera cam;
 	
 	public static KeyInput key;
+	public static Handler handler;
 	
 	public static long[] data = new long[10000];
 	
@@ -66,7 +61,6 @@ public class Game extends Canvas implements Runnable {
 	public static Sprite bg,ground;
 	
 	private boolean running = false;
-	private boolean showinv = false;
 	private Thread thread;
 	
 	public static Color textc = new Color(138,60,34);
@@ -80,6 +74,14 @@ public class Game extends Canvas implements Runnable {
 	Inventory inv = new Inventory();
 	Gui gui = new Gui();
 	TextDraw draw = new TextDraw();
+	
+	public Game() {
+		Dimension size = new Dimension(WIDTH*SCALE, HEIGHT*SCALE);
+		setPreferredSize(size);
+		setMaximumSize(size);
+		setMinimumSize(size);
+
+	}
 	
 	public synchronized void start() {
 		if(running) return;
@@ -99,19 +101,6 @@ public class Game extends Canvas implements Runnable {
 	public void tick() {
 		level.update();
 		key.tick();
-		if(key.escape) {
-			for(Entity en: level.entities) {
-				if(en.getId()==Id.player){
-					Handler.g.setX(en.getX());
-					Handler.g.setY(en.getY());
-					KeyInput.key_enable = true;	
-				}
-			}
-			System.exit(0);
-		}
-		if(KeyInput.inventory) {
-			showinv = !showinv;
-		}
 		for(Entity e: level.entities){
 			if(e.getId()==Id.player) {
 				cam.tick(e);
@@ -146,10 +135,25 @@ public class Game extends Canvas implements Runnable {
 	public void init(){
 
 		key = new KeyInput();
+		handler = new Handler();
 		level = Level.map1;
 		
-		//System.out.println(handler);
+		cam = new Camera();		
+		addKeyListener(key);
+
+		initSprite();
 		
+		MouseInput mouse = new MouseInput();
+		addMouseListener(mouse);
+		addMouseMotionListener(mouse);
+		addMouseWheelListener(mouse);
+		
+		gui.init();
+
+    	//handler.ChangeMusic(1,1,false);	
+	}
+	
+	private void initSprite(){
      	sheet = new SpriteSheet("/Character/normal.png");
      	
      	sheets[0] = new SpriteSheet("/Tiles/nature.png");
@@ -184,88 +188,6 @@ public class Game extends Canvas implements Runnable {
 			}
 		}
 		
-		cam = new Camera();		
-		addKeyListener(key);
-		
-		MouseInput mouse = new MouseInput();
-		addMouseListener(mouse);
-		addMouseMotionListener(mouse);
-		addMouseWheelListener(mouse);
-		
-	
-		/* GUI Elemente */
-		try {
-			GuiMap map = new GuiMap(230, 20, 1220, 930);
-			map.setVisible(false);
-			gui.addGuiElement(map);
-			
-			GuiButton inventory = new GuiButton(230, 20, ImageIO.read(new File("res/Inventory/inv.png")), new GuiAction() {
-				public void action() {
-
-				}
-			});
-			inventory.setVisible(false);
-			gui.addGuiElement(inventory);
-			
-			GuiButton player = new GuiButton(1100, 290, ImageIO.read(new File("res/Inventory/player.png")), new GuiAction() {
-				public void action() {
-
-				}
-			});
-			player.setVisible(false);
-			gui.addGuiElement(player);
-			
-			GuiButton cancel_button = new GuiButton(1750, 20, ImageIO.read(new File("res/Buttons/cancel.png")), new GuiAction() {
-				public void action() {
-					System.exit(0);
-				}
-			});
-			cancel_button.setVisible(false);
-			gui.addGuiElement(cancel_button);
-			
-			GuiButton health_button = new GuiButton(20, 950, ImageIO.read(new File("res/Buttons/health.png")), new GuiAction() {
-				public void action() {
-					
-				}
-			});
-			gui.addGuiElement(health_button);
-			
-			
-			GuiButton menu_button = new GuiButton(1770, 930, ImageIO.read(new File("res/Buttons/menu.png")), new GuiAction() {
-				public void action() {
-					
-				}
-			});
-			gui.addGuiElement(menu_button);
-			
-			GuiButton inventory_button = new GuiButton(1620, 930, ImageIO.read(new File("res/Buttons/inventory.png")), new GuiAction() {
-				public void action() {
-					inventory.setVisible(!inventory.isVisible());
-					player.setVisible(!player.isVisible());
-				}
-			});
-			gui.addGuiElement(inventory_button);
-			
-			GuiButton quest_button = new GuiButton(1460, 935, ImageIO.read(new File("res/Buttons/quest.png")), new GuiAction() {
-				public void action() {
-					
-				}
-			});
-			gui.addGuiElement(quest_button);
-			
-			GuiButton map_button = new GuiButton(30, 840, ImageIO.read(new File("res/Buttons/map_button.png")), new GuiAction() {
-				public void action() {
-					map.setVisible(!map.isVisible());
-					KeyInput.key_enable = !KeyInput.key_enable;
-				}
-			});
-			gui.addGuiElement(map_button);	
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		/* GUI Elemente */
-		
 		
 		int p = 0;
      	
@@ -288,8 +210,6 @@ public class Game extends Canvas implements Runnable {
     		player[i] = new Sprite(sheet, p+17, 714, 30,52);
     		p+=64;
     	}
-    	
-    	//handler.ChangeMusic(1,1,false);	
 	}
 	
 	@Override
@@ -327,13 +247,6 @@ public class Game extends Canvas implements Runnable {
 		stop();
 	}
 	
-	public Game() {
-		Dimension size = new Dimension(WIDTH*SCALE, HEIGHT*SCALE);
-		setPreferredSize(size);
-		setMaximumSize(size);
-		setMinimumSize(size);
-
-	}
 	public static int getFrameWidth() {
 		return WIDTH*SCALE;
 	}
@@ -362,8 +275,8 @@ public class Game extends Canvas implements Runnable {
 			level = Level.map2;
 			break;
 		}
-		
-		level.getPlayer().setX(level.getPlayer().getX() + x);
+
+		level.getPlayer().setX(Handler.g.getX() + x);
 		level.getPlayer().setY(level.getPlayer().getY() + y);
 		level.getPlayer().changeLevel = false;
 		

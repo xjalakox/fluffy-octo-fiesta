@@ -8,7 +8,7 @@ import java.awt.image.ImageObserver;
 
 import javax.swing.ImageIcon;
 
-import rpg.Handler;
+import rpg.Game;
 public class TextDraw {
 	
 	private static String text = "";
@@ -23,7 +23,7 @@ public class TextDraw {
 	private Color textc = new Color(138,60,34);
 	
 	public static void drawText(int id) {
-		text = Handler.texts.getText(id-1);
+		text = Game.handler.texts.getText(id-1);
 	}
 	private int time = 0;
 	private boolean drawing;
