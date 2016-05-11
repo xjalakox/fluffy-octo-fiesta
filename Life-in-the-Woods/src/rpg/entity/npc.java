@@ -5,13 +5,12 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import rpg.Game;
-import rpg.Handler;
 import rpg.Id;
 
 public class npc extends Entity {
 
-	public npc(int x, int y, int w, int h, Id id, Handler handler) {
-		super(x, y, w, h, id, handler);
+	public npc(int x, int y, int w, int h, Id id) {
+		super(x, y, w, h, id);
 	}
 	
 

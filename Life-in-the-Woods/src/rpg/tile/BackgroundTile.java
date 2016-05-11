@@ -3,7 +3,6 @@ package rpg.tile;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import rpg.Handler;
 import rpg.Id;
 
 public abstract class BackgroundTile {
@@ -18,15 +17,12 @@ public abstract class BackgroundTile {
 
 	public Id id;
 	
-	public Handler handler;
-	
-	BackgroundTile(int x, int y, int w, int h, Id id, Handler handler,boolean solid,long arrayzahl){
+	BackgroundTile(int x, int y, int w, int h, Id id, boolean solid,long arrayzahl){
 			this.x = x;
 			this.y = y;
 			this.w = w;
 			this.h = h;
 			this.id = id;
-			this.handler = handler;
 			this.solid = solid;
 			this.arrayzahl = arrayzahl;
 			this.removed = false;

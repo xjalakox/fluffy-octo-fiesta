@@ -39,7 +39,7 @@ public class Menu extends JFrame {
 
 	public Menu() {
 		
-		CustomCursor Cursor = new CustomCursor("default");
+		new CustomCursor("default");
 		setCursor(CustomCursor.cursor);
 		
 		setVisible(false);

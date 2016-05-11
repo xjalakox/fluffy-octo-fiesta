@@ -5,13 +5,12 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import rpg.Game;
-import rpg.Handler;
 import rpg.Id;
 
 public class obj extends Tile{
 
-	public obj(int x, int y, int w, int h, Id id, Handler handler, boolean solid, long arrayzahl) {
-		super(x, y, w, h, id, handler,solid, arrayzahl);
+	public obj(int x, int y, int w, int h, Id id, boolean solid, long arrayzahl) {
+		super(x, y, w, h, id, solid, arrayzahl);
 		// TODO Auto-generated constructor stub
 	}
 

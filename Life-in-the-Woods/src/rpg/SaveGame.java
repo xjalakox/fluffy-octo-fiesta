@@ -11,7 +11,6 @@ public class SaveGame {
     private File savegame = new File("res/Savegames/savegame.txt");
      
     private String name;
-    private String name2;
     
     private int x, y;
      

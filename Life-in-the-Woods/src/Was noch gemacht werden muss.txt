@@ -1,0 +1,20 @@
+Mehr oder weniger Leon:
+
+Inventar fertig machen (kosmetisch)
+Karte
+Mehr Maps
+Neues Bild für den "Scroll" text
+Mehr NPCS Sprites
+Waffen Tränke sprites
+
+Mehr oder weniger Jannik:
+
+Kampfsystem
+Random system für npcs durch die Stadt
+Quest System(Programmieren)
+
+Mehr oder weniger beide:
+
+Story weiterschreiben
+Texte schreiben
+Quest System(Ideen)

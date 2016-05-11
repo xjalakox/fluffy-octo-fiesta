@@ -64,6 +64,7 @@ public class SoundManager {
                 if(id == s.getID()) {
                     this.path = s.getPath();
                     this.vol = s.getVolume();
+                    this.setVolume(vol);
                 }
             }
         }

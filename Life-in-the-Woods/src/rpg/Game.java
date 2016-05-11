@@ -8,7 +8,6 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -31,6 +30,7 @@ import rpg.gui.GuiButton;
 import rpg.gui.GuiMap;
 import rpg.gui.TextDraw;
 import rpg.json.JSONDecoder;
+import rpg.level.Level;
 
 
 @SuppressWarnings("serial")
@@ -70,8 +70,8 @@ public class Game extends Canvas implements Runnable {
 	private Thread thread;
 	
 	public static Color textc = new Color(138,60,34);
-	
-	public static Handler handler;
+
+	public static Level level;
 	
 	
 	
@@ -97,12 +97,22 @@ public class Game extends Canvas implements Runnable {
 		}
 	}
 	public void tick() {
-		handler.tick();
+		level.update();
 		key.tick();
+		if(key.escape) {
+			for(Entity en: level.entities) {
+				if(en.getId()==Id.player){
+					Handler.g.setX(en.getX());
+					Handler.g.setY(en.getY());
+					KeyInput.key_enable = true;	
+				}
+			}
+			System.exit(0);
+		}
 		if(KeyInput.inventory) {
 			showinv = !showinv;
 		}
-		for(Entity e:Handler.entity){
+		for(Entity e: level.entities){
 			if(e.getId()==Id.player) {
 				cam.tick(e);
 			}
@@ -123,7 +133,7 @@ public class Game extends Canvas implements Runnable {
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, WIDTH*SCALE+100, HEIGHT*SCALE+100);
 		g2d.translate(cam.getX(), cam.getY());
-		handler.render(g);
+		level.render(g);
 		g2d.translate(-cam.getX(), -cam.getY());
 			
 		draw.render(g);
@@ -134,10 +144,11 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public void init(){
+
+		key = new KeyInput();
+		level = Level.map1;
 		
-		handler = new Handler();
-		
-		texts[0] = "Hallo " + Handler.g.getName();
+		//System.out.println(handler);
 		
      	sheet = new SpriteSheet("/Character/normal.png");
      	
@@ -174,7 +185,6 @@ public class Game extends Canvas implements Runnable {
 		}
 		
 		cam = new Camera();		
-		key = new KeyInput();
 		addKeyListener(key);
 		
 		MouseInput mouse = new MouseInput();
@@ -279,12 +289,7 @@ public class Game extends Canvas implements Runnable {
     		p+=64;
     	}
     	
-    	handler.ChangeMusic(1,1,false);
-    	handler.ChangeLevel("res/Maps/map1_roof.json",Handler.g.getX(),Handler.g.getY());
-		
-		
-		
-	
+    	//handler.ChangeMusic(1,1,false);	
 	}
 	
 	@Override
@@ -337,17 +342,6 @@ public class Game extends Canvas implements Runnable {
 		return HEIGHT*SCALE;
 	}
 	
-	public static Rectangle getVisisbleArea() {
-        for(int i=0;i<handler.entity.size();i++) {
-            Entity e = handler.entity.get(i);   
-            if(e.getId()==Id.player)
-            {
-                return new Rectangle(e.getX()-960, e.getY()-540, 1920, 1080);
-            }
-        }
-        return null;
-    }
-	
 	public static BufferedImage scale(BufferedImage sbi, int imageType, int dWidth, int dHeight, double fWidth, double fHeight) {
 	    BufferedImage dbi = null;
 	    if(sbi != null) {
@@ -357,6 +351,22 @@ public class Game extends Canvas implements Runnable {
 	        g.drawRenderedImage(sbi, at);
 	    }
 	    return dbi;
+	}
+
+	public static void changeLevel(int map, int x,int y) {
+		switch(map) {
+		case Level.MAP:
+			level = Level.map1;
+			break;
+		case Level.MAP_NOROOF: 
+			level = Level.map2;
+			break;
+		}
+		
+		level.getPlayer().setX(level.getPlayer().getX() + x);
+		level.getPlayer().setY(level.getPlayer().getY() + y);
+		level.getPlayer().changeLevel = false;
+		
 	}
 	
 

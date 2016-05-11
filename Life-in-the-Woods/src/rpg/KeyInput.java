@@ -5,8 +5,6 @@ import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import rpg.entity.Entity;
-
 public class KeyInput implements KeyListener, FocusListener {
 	
 	private boolean[] keyStates;
@@ -41,32 +39,6 @@ public class KeyInput implements KeyListener, FocusListener {
 		escape = keyStates[KeyEvent.VK_ESCAPE];
 		talk_npc = keyStates[KeyEvent.VK_ENTER];
 		coordinate = keyStates[KeyEvent.VK_0];
-		if(enterdoor2){
-			if(enterdoor){
-				rpg.Game.handler.clearLevel();
-				rpg.Game.handler.createLevel(rpg.Game.map1_noroof,Game.handler.g.getX(),Game.handler.g.getY());
-			
-				rpg.entity.player.door = 50;
-			}
-		}
-		if(enterdoor3){
-			if(enterdoor4){
-				rpg.Game.handler.clearLevel();
-				rpg.Game.handler.createLevel(rpg.Game.map1_roof,Game.handler.g.getX(),Game.handler.g.getY());
-			
-				rpg.entity.player.door2 = 50;
-			}
-		}
-		if(escape){
-			for(Entity en:Game.handler.entity) {
-				if(en.getId()==Id.player){
-					Handler.g.setX(en.getX());
-					Handler.g.setY(en.getY());
-					KeyInput.key_enable = true;	
-				}
-			}
-			System.exit(0);
-		}
 	}
 	
 	@Override

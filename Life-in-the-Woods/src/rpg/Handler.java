@@ -1,36 +1,37 @@
 package rpg;
 
 import java.awt.Graphics;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
-import rpg.audio.SoundManager;
-import rpg.entity.Entity;
-import rpg.entity.npc;
-import rpg.entity.player;
-import rpg.json.JSONDecoder;
-import rpg.tile.Backg;
-import rpg.tile.BackgroundTile;
-import rpg.tile.Tile;
-import rpg.tile.door;
-import rpg.tile.obj;
 
 public class Handler {
-	public static List<Entity> entity = new ArrayList<Entity>();
-	public static List<Tile> tile = new ArrayList<Tile>();
-	public static List<BackgroundTile> btile = new ArrayList<BackgroundTile>();
 	
-	public static SoundManager manager = new SoundManager();
+	//public Level level;
+	public KeyInput key;
+	
+	//public static SoundManager manager = new SoundManager();
 
 	public static SaveGame g = new SaveGame();
 	public static Texts texts = new Texts();
 	
-	public static player player;
+	public Handler(KeyInput key) {
+		this.key = key;
+		//this.level = Level.map1;
+	}
 	
-	public void render(Graphics g){
+	public void tick() {
+	//	level.update();
+	}
+	
+	public void render(Graphics g) {
+		//level.render(g);
+	}
+	
+	/*public void changeLevel(int id) {
+		c
+	}
+ 	/*	
+	public void render(Graphics g,int id){
+		
+		
 		for(Tile ti:tile){
 			if(Game.getVisisbleArea()!=null&&ti.getBounds().intersects(Game.getVisisbleArea())){
                 ti.render(g);
@@ -50,21 +51,18 @@ public class Handler {
 		}
 	}
 	
-	public void tick(){
-		for(Tile ti:tile){
-			ti.tick();
-		}
-		for(Entity en:entity){
-
-				if(Game.getVisisbleArea()!=null&&en.getBounds().intersects(Game.getVisisbleArea())){
-					en.tick();
-	            }
-			
-		}
-		for(BackgroundTile bti:btile){
-			bti.tick();
-		}
-		remove();
+	public void tick(int id){
+			for(Tile ti:tile){
+				ti.tick();
+			}
+			for(Entity en:entity){
+					if(Game.getVisisbleArea()!=null&&en.getBounds().intersects(Game.getVisisbleArea()) && !en.isRemoved()){
+						en.tick();
+		            }
+			}
+			for(BackgroundTile bti:btile){
+				bti.tick();
+			}
 	}
 	
 	private void remove() {
@@ -92,23 +90,23 @@ public class Handler {
 	}
 	
 	public void clearLevel() {
-       for(int i = 0; i < tile.size(); i++) {
-    	   tile.get(i).remove();
-       }
-       for(int i = 0; i < entity.size(); i++) {
-    	   entity.get(i).remove();
-       }
-       for(int i = 0; i < btile.size(); i++) {
-    	   btile.get(i).remove();
-       }
+        for(int i = 0; i < tile.size(); i++) {
+     	    tile.remove(i);
+        }
+        for(int i = 0; i < entity.size(); i++) {
+        	 entity.remove(i);
+        }
+        for(int i = 0; i < btile.size(); i++) {
+    	    btile.remove(i);
+        }
     }
 	
 	public void ChangeLevel(String levelPath, int x,int y){
-		Game.handler.clearLevel();
-		Game.handler.createLevel(levelPath,x,y);
+		clearLevel();
+		///createLevel(levelPath,x,y);
 	}
-	
-	public void ChangeMusic(int newMusicID, int oldMusicID, boolean running){
+	*/
+	/*public void ChangeMusic(int newMusicID, int oldMusicID, boolean running){
 		if(oldMusicID==0){
 		//	manager.playSound(newMusicID);
 		}else if(oldMusicID==newMusicID&&!running){
@@ -122,12 +120,13 @@ public class Handler {
 		if(!Game.DEBUG) manager.fadeInSound(newMusicID);
 	}
 
-	
+	/*
 	public void createLevel(String file,int x,int y){
 
 		
 		addEntity(new npc(2500,2500,60,84,Id.blacksmith,this));
-		addEntity(new player(x,y,60,84,Id.player,this, Game.key)); 
+		player = new player(x,y,60,84,Id.player,this, Game.key);
+		addEntity(player); 
 
 		
 		JSONObject map1 = JSONDecoder.loadMapData(file);
@@ -176,4 +175,5 @@ public class Handler {
 			Loadingscreen.frame.Close();
 		}
 	}	
+	*/
 }

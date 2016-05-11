@@ -3,7 +3,6 @@ package rpg.entity;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import rpg.Handler;
 import rpg.Id;
 
 public abstract class Entity {
@@ -14,17 +13,15 @@ public abstract class Entity {
 	public Id id;
 	
 	public boolean removed;
-	
-	public Handler handler;
+
 	public boolean animate;
 	
-	 public Entity(int x, int y, int w, int h, Id id, Handler handler){
+	 public Entity(int x, int y, int w, int h, Id id){
 			this.x = x;
 			this.y = y;
 			this.w = w;
 			this.h = h;
 			this.id = id;
-			this.handler = handler;
 			this.removed = false;
 		}
 	 
