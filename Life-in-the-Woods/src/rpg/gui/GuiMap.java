@@ -16,7 +16,7 @@ public class GuiMap extends GuiElement {
 	private int zoom;
 	
 	public GuiMap(int x, int y, int w, int h) {
-		super(x, y);
+		super(x, y,w,h);
 		this.w = w;
 		this.h = h;
 		this.zoom = 1;

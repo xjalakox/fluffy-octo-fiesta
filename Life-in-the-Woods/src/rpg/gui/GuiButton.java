@@ -16,18 +16,26 @@ public class GuiButton extends GuiElement{
 	
 	private boolean inside, pressed, ignorePressed;
 	
-	public GuiButton(int x, int y, BufferedImage image, GuiAction action) {
-		super(x, y);
+	public GuiButton(int x, int y,int w,int h, BufferedImage image, GuiAction action) {
+		super(x, y,w,h);
 		this.image = image;
 		this.action = action;
-		this.rect = new Rectangle(x, y, image.getWidth(), image.getHeight());
+		if(w==0&&h==0){
+			this.rect = new Rectangle(x, y, image.getWidth(), image.getHeight());
+		}else{
+			this.rect = new Rectangle(x, y, w, h);
+		}
 		inside = false;
 		pressed = false;
 		ignorePressed = false;
 	}
 	
 	public void render(Graphics g) {
-		g.drawImage(image, (int)rect.getX(),(int) rect.getY(), null);
+		if(w==0&&h==0){
+			g.drawImage(image, (int)rect.getX(),(int) rect.getY(), null);
+		}else{
+			g.drawImage(image, (int)rect.getX(),(int) rect.getY(),w,h, null);
+		}
 	}
 	
 	public Rectangle getRect() {

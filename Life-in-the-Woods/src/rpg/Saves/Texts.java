@@ -1,25 +1,24 @@
-package rpg;
+package rpg.Saves;
  
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Formatter;
 import java.util.Scanner;
  
-public class SaveGame {
+public class Texts {
      
     private Scanner scan;
-    private File savegame = new File("res/Savegames/savegame.txt");
-     
-    private String name;
+    private File textFiles = new File("res/Savegames/texts.txt");
+
+    private String text[] = new String[250];
     
-    private int x, y;
      
      
      
-    public SaveGame() {
-        if(savegame.exists()) {
+    public Texts() {
+        if(textFiles.exists()) {
             try {
-                scan = new Scanner(savegame);
+                scan = new Scanner(textFiles);
                 read();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -34,9 +33,9 @@ public class SaveGame {
     public void read() {
         if(scan.hasNext()){
             try{
-                this.name = scan.next();
-                this.x = scan.nextInt();
-                this.y = scan.nextInt();
+                for(int i=0;i<=250;i++){
+                	this.text[i] = scan.nextLine();
+                }
             } catch (Exception e) {
                 //setToDefault();
             }
@@ -47,9 +46,11 @@ public class SaveGame {
      
     public void write() {
         try {
-            Formatter formatter = new Formatter(savegame);
-            formatter.format
-            ("%s %n%s %n%s" ,name,x,y);
+            Formatter formatter = new Formatter(textFiles);
+            formatter.format("%s", text[0]);
+            for(int i=1;i<250;i++){
+            	formatter.format(" %n%s", text[i]);
+            }
             formatter.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -57,37 +58,21 @@ public class SaveGame {
     }
      
     public void setToDefault() {
-         
-        this.name = "test";
+
+        this.text[0] = "a";
+        this.text[1] = "b";
+        this.text[2] = "c";
                                  
         write();
     }
- 
-    public String getName() {
-        return this.name;
+    
+    public String getText(int id){
+    	return this.text[id];
     }
- 
-    public void setName(String name) {
-        this.name = name;
-        write();
+    
+    public void setTest(int id,String text){
+    	this.text[id] = text;
+    	write();
     }
-
-	public int getX() {
-		return this.x;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-		write();
-	}
-
-	public int getY() {
-		return this.y;
-	}
-
-	public void setY(int y) {
-		this.y = y;
-		write();
-	}
      
 }
