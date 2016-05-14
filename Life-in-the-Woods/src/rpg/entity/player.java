@@ -104,14 +104,15 @@ public class Player extends Entity {
 		for(Tile t : level.tiles){
 			if(t.getId()==Id.door){
 				if(getBounds().intersects(t.getBoundsBottom())&& !changeLevel) {
-					g.setX(level.getPlayer().getX());
-					g.setY(level.getPlayer().getY());
-					Game.changeLevel(Level.MAP_NOROOF,0,-100);
+					//g.setX(level.getPlayer().getX());
+					//g.setY(level.getPlayer().getY());
+					Game.changeLevel(Level.MAP_NOROOF,0, level.getPlayer().getY()-150);
 					changeLevel = true;
 					System.out.println("change level in");
+					Game.handler.ChangeMusic(1,1,true);	
 				}
 				if(getBounds().intersects(t.getBoundsTop())&& !changeLevel) {
-					Game.changeLevel(Level.MAP,0,50);
+					Game.changeLevel(Level.MAP_NOROOF,0, level.getPlayer().getY()-150);
 					changeLevel = true;
 					System.out.println("change level out");
 				}

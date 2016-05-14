@@ -1,41 +1,35 @@
 package rpg.gui;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
 
 import rpg.MouseInput;
 
-public class GuiButton extends GuiElement{
+public class GuiMenuItem extends GuiElement {
 	
 	private Rectangle rect;
-	private BufferedImage image;
+	private String text;
 	private GuiAction action;
 	
 	private boolean inside, pressed, ignorePressed;
 	
-	public GuiButton(int x, int y,int w,int h, BufferedImage image, GuiAction action) {
+	public GuiMenuItem(int x, int y, int w, int h, String text, GuiAction action) {
 		super(x, y,w,h);
-		this.image = image;
+		this.text = text;
 		this.action = action;
-		if(w==0&&h==0){
-			this.rect = new Rectangle(x, y, image.getWidth(), image.getHeight());
-		}else{
 			this.rect = new Rectangle(x, y, w, h);
-		}
 		inside = false;
 		pressed = false;
 		ignorePressed = false;
 	}
 	
 	public void render(Graphics g) {
-		if(w==0&&h==0){
-			g.drawImage(image, (int)rect.getX(),(int) rect.getY(), null);
-		}else{
-			g.drawImage(image, (int)rect.getX(),(int) rect.getY(),w,h, null);
-		}
+		g.drawString(text, (int)rect.getX() + 10,(int) rect.getY() + 25);
+		g.setColor(Color.BLUE);
+		g.drawRect(x, y, w, h);
 	}
 	
 	public Rectangle getRect() {
