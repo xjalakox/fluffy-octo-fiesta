@@ -1,15 +1,22 @@
 {
 	"1":{
+		"id" : 1,
 		"name": "test",
 		"status": "test2",
 		"task": "Kille 3 Timos",
 		"bounty": 25,
 		"bounty_amount": 7,
 		"progress" : 0
-		},
+	},
 		
 		
 	"2":{
-		"":13,
-		},
+		"id" : 2,
+		"name": "test3",
+		"status": "test4",
+		"task": "Kille 23 Timos",
+		"bounty": 15,
+		"bounty_amount": 71,
+		"progress" : 1
+	},
 }

@@ -23,6 +23,7 @@ import rpg.gui.Gui;
 import rpg.gui.TextDraw;
 import rpg.json.JSONDecoder;
 import rpg.level.Level;
+import rpg.quest.Quest;
 
 @SuppressWarnings("serial")
 public class Game extends Canvas implements Runnable {
@@ -148,6 +149,8 @@ public class Game extends Canvas implements Runnable {
 		addMouseWheelListener(mouse);
 
 		gui.init();
+		
+		Quest quest = new Quest();
 
 		// handler.ChangeMusic(1,1,false);
 	}
