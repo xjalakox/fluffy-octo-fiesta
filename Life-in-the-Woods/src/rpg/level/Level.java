@@ -43,13 +43,12 @@ public class Level {
 	
 	private void loadLevel(String path) {
 		try {
-			System.out.print("Lade level: " + path);
+			System.out.println("Lade level: " + path);
 			levelData = JSONDecoder.loadMapData(path);
 		} catch(Exception e) {
 			e.printStackTrace();
-			System.err.println("Fehler");
+			System.err.println("Fehler beim Laden von level: " + path);
 		}
-		System.out.println(" Success");
 	}
 
 	private void generateLevel() {

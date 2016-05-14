@@ -27,7 +27,7 @@ public class GuiMenu extends GuiElement {
 		if(item.getTyp() == FOOD) {
 			options.add(new GuiMenuItem(x + 50, y + 35 + options.size()*50, 80, 50, "Eat", new GuiAction() {
 				public void action() {
-					System.out.println("ISS item " + item.getName());
+					//System.out.println("ISS item " + item.getName());
 					if(item.getAnzahl() > 0) {
 						item.verringereAnzahl();
 					}
@@ -35,7 +35,7 @@ public class GuiMenu extends GuiElement {
 			}));
 			options.add(new GuiMenuItem(x + 50, y + 35 + options.size()*50, 80, 50, "DROP", new GuiAction() {
 				public void action() {
-					System.out.println("Drop item " + item.getName());
+					//System.out.println("Drop item " + item.getName());
 					if(item.getAnzahl() > 0) {
 						item.verringereAnzahl();
 					}

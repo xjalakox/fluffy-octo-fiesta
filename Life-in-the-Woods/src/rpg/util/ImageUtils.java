@@ -13,12 +13,11 @@ public class ImageUtils {
 	public static BufferedImage loadImage(String path) {
 		BufferedImage image = null;
 		try {
-			System.out.print("Lade Bild " + path + " ...");
+			System.out.println("Lade Bild: " + path);
 			image = ImageIO.read(new File(path));
 		} catch (IOException e) {
-			System.err.println("Failed");
+			System.err.println("Fehler beim Laden von Bild: " + path);
 		}
-		System.out.println("Success");
 		return image;
 	}
 }

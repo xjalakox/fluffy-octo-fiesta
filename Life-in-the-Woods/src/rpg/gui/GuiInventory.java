@@ -39,7 +39,6 @@ public class GuiInventory extends GuiElement {
 			y = 0;
 		for(int i = 0; i < items.length; i++) {
 			if(items[i] == null||items[i].getAnzahl()==0)continue;
-			System.out.println(items[i].getAnzahl());
 			buttons[i] = new GuiItem(300 + x * 81, 90 + y * 80, items[i]);
 			buttons[i].setVisible(this.isVisible());
 			x++;
