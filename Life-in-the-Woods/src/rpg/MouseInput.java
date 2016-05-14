@@ -15,6 +15,7 @@ public class MouseInput implements MouseListener, MouseMotionListener, MouseWhee
 	
 	public static int getX() {
 		return mouseX;
+		//System.out.println("christian ist gay");
 	}
 	
 	public static int getY() {
