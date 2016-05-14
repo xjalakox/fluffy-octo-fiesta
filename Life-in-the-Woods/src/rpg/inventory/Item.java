@@ -19,6 +19,7 @@ public abstract class Item {
 		this.img_id = id;
 		this.typ = typ;
 		this.anzahl = anzahl;
+		
 	}
 	
 	public String getName() {
@@ -32,4 +33,18 @@ public abstract class Item {
 	public int getImgId() {
 		return this.img_id;
 	}
+	
+	public int getAnzahl() {
+		return this.anzahl;
+	}
+
+	public void erhoeheAnzahl() {
+		this.anzahl++;
+	}
+	
+	public void verringereAnzahl() {
+		this.anzahl--;
+	}
+
+	public abstract void action();
  }

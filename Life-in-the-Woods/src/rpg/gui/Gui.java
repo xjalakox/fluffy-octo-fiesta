@@ -1,8 +1,6 @@
 package rpg.gui;
 
 import java.awt.Graphics;
-import java.awt.MouseInfo;
-import java.awt.Point;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,9 +8,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import rpg.Game;
 import rpg.KeyInput;
-import static rpg.Handler.inv;
 
 public class Gui {
 
@@ -52,7 +48,7 @@ public class Gui {
 			map.setVisible(false);
 			addGuiElement(map);
 
-			GuiButton inventory = new GuiButton(230, 20, 0, 0, ImageIO.read(new File("res/Inventory/inv.png")),
+			/*GuiButton inventory = new GuiButton(230, 20, 0, 0, ImageIO.read(new File("res/Inventory/inv.png")),
 					new GuiAction() {
 						public void action() {
 
@@ -81,19 +77,13 @@ public class Gui {
 						}
 					});
 			inventory.setVisible(false);
+			addGuiElement(inventory);*/
+			
+			GuiInventory inventory = new GuiInventory(230, 20, 1220, 930);
+			inventory.setVisible(false);
 			addGuiElement(inventory);
-
-			GuiButton player = new GuiButton(1100, 290, 0, 0, ImageIO.read(new File("res/Inventory/player.png")),
-					new GuiAction() {
-						public void action() {
-
-						}
-					});
-			player.setVisible(false);
-			addGuiElement(player);
-
-			GuiButton items[] = new GuiButton[63];
-
+			 
+			/*
 			int b = 0;
 			int c = 0;
 
@@ -115,7 +105,7 @@ public class Gui {
 				items[i].setVisible(false);
 				addGuiElement(items[i]);
 			}
-
+*/
 			GuiButton cancel_button = new GuiButton(1750, 20, 0, 0, ImageIO.read(new File("res/Buttons/cancel.png")),
 					new GuiAction() {
 						public void action() {
@@ -145,16 +135,7 @@ public class Gui {
 					ImageIO.read(new File("res/Buttons/inventory.png")), new GuiAction() {
 						public void action() {
 							inventory.setVisible(!inventory.isVisible());
-							player.setVisible(!player.isVisible());
-							for (int i = 0; i < 63; i++) {
-								if (items[i] != null) {
-									System.out.println(items[i]);
-									items[i].setVisible(!items[i].isVisible());
-								} else {
-									System.out.println(items[i] + " ist false");
-								}
-
-							}
+							inventory.updateInventory();
 						}
 					});
 			addGuiElement(inventory_button);

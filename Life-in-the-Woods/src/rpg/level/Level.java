@@ -78,7 +78,7 @@ public class Level {
 							addTile(new obj(a*32,b*32,32,32,Id.nocollision,false,(long) data.get(i)));
 						}else if(ids==193&&j!=2){
 							addTile(new obj(a*32,b*32,32,32,Id.ground,false,(long) data.get(i)));
-						}else if(ids>=2297&&ids<=2488&&j!=2&&j!=23064){
+						}else if(ids>=2297&&ids<=2488&&j!=2&&j!=2306){
 							addTile(new door(a*32,b*32,32,32,Id.door,true,(long) data.get(i)));
 						}else if(ids<=4000&&ids>=0&&j!=2){
 							addTile(new obj(a*32,b*32,32,32,Id.obj,true,(long) data.get(i)));

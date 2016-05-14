@@ -1,6 +1,5 @@
 package rpg;
 
-import rpg.Saves.Inventory;
 import rpg.Saves.SaveGame;
 import rpg.Saves.Texts;
 import rpg.audio.SoundManager;
@@ -10,7 +9,6 @@ public class Handler {
 	
 	public static SoundManager manager = new SoundManager();
 	public static SaveGame g;
-	public static Inventory inv = new Inventory();
 	public Texts texts;
 	
 	public Handler() {

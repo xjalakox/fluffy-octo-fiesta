@@ -46,7 +46,7 @@ public class Game extends Canvas implements Runnable {
 	public static KeyInput key;
 	public static Handler handler;
 
-	public static long[] data = new long[10000];
+	public static long[] data = new long[1000];
 
 	public static Sprite[] player = new Sprite[36];
 
@@ -281,7 +281,8 @@ public class Game extends Canvas implements Runnable {
 		}
 
 		level.getPlayer().setX(Handler.g.getX() + x);
-		level.getPlayer().setY(level.getPlayer().getY() + y);
+		//level.getPlayer().setY(level.getPlayer().getY() + y);
+		level.getPlayer().setY(y);
 		level.getPlayer().changeLevel = false;
 
 	}
