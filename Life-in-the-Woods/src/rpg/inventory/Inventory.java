@@ -36,7 +36,7 @@ public class Inventory {
 		JSONObject slots = new JSONObject();
 		int slot = 1;
 		for (int i = 0; i < items.length; i++) {
-			if (items[i] != null && items[i].getAnzahl() > 0) {
+			if (items[i] != null) {
 				JSONObject item = new JSONObject();
 				item.put("ID", items[i].getImgId());
 				item.put("Anzahl", items[i].getAnzahl());
@@ -45,7 +45,6 @@ public class Inventory {
 			}
 		}
 		JSONDecoder.saveInventory("res/Savegames/Inventory.json", slots);
-		//loadInventory();
 	}
 
 	public void add(Item i) {

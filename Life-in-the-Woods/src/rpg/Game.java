@@ -46,7 +46,7 @@ public class Game extends Canvas implements Runnable {
 	public static KeyInput key;
 	public static Handler handler;
 
-	public static long[] data = new long[1000];
+	public static long[] data = new long[10000];
 
 	public static Sprite[] player = new Sprite[36];
 
