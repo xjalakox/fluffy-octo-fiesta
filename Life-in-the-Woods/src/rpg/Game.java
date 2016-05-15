@@ -113,7 +113,7 @@ public class Game extends Canvas implements Runnable {
 	public void render() {
 		bs = getBufferStrategy();
 		if (bs == null) {
-			createBufferStrategy(4);
+			createBufferStrategy(2);
 			return;
 		}
 
@@ -246,8 +246,8 @@ public class Game extends Canvas implements Runnable {
 				ups = ticks;
 				frames = 0;
 				ticks = 0;
-				//System.out.println("FPS: " + fps);
-				//System.out.println("Ticks: " + ups);
+				System.out.println("FPS: " + fps);
+				System.out.println("Ticks: " + ups);
 			}
 		}
 		stop();

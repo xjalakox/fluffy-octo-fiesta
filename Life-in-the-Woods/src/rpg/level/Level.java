@@ -83,6 +83,9 @@ public class Level {
 						}else if(ids<=4000&&ids>=0&&j!=2){
 							addTile(new obj(a*32,b*32,32,32,Id.obj,true,(long) data.get(i)));
 						}else{
+							System.out.println(ids);
+							System.out.println(a);
+							System.out.println(b);
 							addTile(new obj(a*32,b*32,32,32,Id.nocollision,false,(long) data.get(i)));
 						}
 						a++;
