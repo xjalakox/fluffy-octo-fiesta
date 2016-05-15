@@ -55,7 +55,7 @@ public class Game extends Canvas implements Runnable {
 
 	private int fps, ups;
 
-	public static Sprite[] sprites = new Sprite[4000];
+	public static Sprite[] sprites = new Sprite[8000];
 	public static Sprite[] inv_items = new Sprite[200];
 	public static Sprite bg, ground;
 

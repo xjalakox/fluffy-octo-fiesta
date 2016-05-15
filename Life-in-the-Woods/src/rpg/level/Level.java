@@ -57,16 +57,18 @@ public class Level {
 		int a = 0;
 		int b = 0;
 
-		for(int j=0;j<=21;j++){
+		for(int j=0;j<=25;j++){
 			long opacity = (long)((JSONObject)((JSONArray)levelData.get("layers")).get(j)).get("opacity");
 				if(opacity==1){
 					JSONArray data = (JSONArray)((JSONObject)((JSONArray)levelData.get("layers")).get(j)).get("data");
+					
 					for(int i=0;i<data.size();i++){
 						long ids = (long) data.get(i);
 						if(i % 100 == 0){
 							b++;
 							a=0;
 						}
+						
 						
 						if(ids==0){
 							
