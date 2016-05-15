@@ -15,6 +15,7 @@ import rpg.Id;
 import rpg.Loadingscreen;
 import rpg.entity.Entity;
 import rpg.entity.Player;
+import rpg.entity.npc;
 import rpg.json.JSONDecoder;
 import rpg.tile.Backg;
 import rpg.tile.BackgroundTile;
@@ -38,7 +39,7 @@ public class Level {
 	
 	public Level(String path) {
 		loadLevel(path);
-		generateLevel();
+		generateLevel(path);
 	}
 	
 	private void loadLevel(String path) {
@@ -51,13 +52,10 @@ public class Level {
 		}
 	}
 
-	private void generateLevel() {
+	private void generateLevel(String path) {
 		int a = 0;
 		int b = 0;
-		
-		
-		addEntity(new Player(Handler.g.getX(), Handler.g.getY(), 64, 84, Id.player, this,Game.key));
-		
+
 		for(int j=0;j<=21;j++){
 			long opacity = (long)((JSONObject)((JSONArray)levelData.get("layers")).get(j)).get("opacity");
 				if(opacity==1){
@@ -90,6 +88,7 @@ public class Level {
 				}
 		}
 		
+		addEntities(path);
 		
 		
 		boolean visible = Loadingscreen.frame.isVisible();
@@ -98,6 +97,19 @@ public class Level {
 		}
 	}
 	
+	private void addEntities(String path) {
+		addEntity(new Player(Handler.g.getX(), Handler.g.getY(), 64, 84, Id.player, this,Game.key));
+		switch (path) {
+		case "res/Maps/map1_roof.json":
+			
+			break;
+		case "res/Maps/map1_noroof.json":
+			System.out.println("No roof");
+			addEntity(new npc(1792,2100,64,84,Id.blacksmith));
+			break;
+		}
+	}
+
 	private void addBTile(Backg bt) {
 		this.btile.add(bt);
 	}

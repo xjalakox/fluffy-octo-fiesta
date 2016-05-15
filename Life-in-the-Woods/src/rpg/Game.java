@@ -151,6 +151,10 @@ public class Game extends Canvas implements Runnable {
 		gui.init();
 		
 		Quest quest = new Quest();
+		System.out.println(quest.getBounty(2));
+		System.out.println(quest.getBountyAmount(2));
+		System.out.println(quest.getProgress(2));
+		System.out.println(quest);
 
 		// handler.ChangeMusic(1,1,false);
 	}

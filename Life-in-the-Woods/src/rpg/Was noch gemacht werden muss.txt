@@ -9,6 +9,11 @@ Waffen Tränke sprites
 
 Mehr oder weniger Jannik:
 
+
+Inventar fixxen:
+	Bei essen oder drop anzahl im inventar sofort aktualisieren
+	Sound für essen drop etc.
+	Ausrüsten des items an richtiger stelle
 Kampfsystem
 Random system für npcs durch die Stadt
 Quest System(Programmieren)
