@@ -40,6 +40,7 @@ public class Level {
 	public Level(String path) {
 		loadLevel(path);
 		generateLevel(path);
+		addEntities(path);
 	}
 	
 	private void loadLevel(String path) {
@@ -88,8 +89,6 @@ public class Level {
 				}
 		}
 		
-		addEntities(path);
-		
 		
 		boolean visible = Loadingscreen.frame.isVisible();
 		if(visible==true){
@@ -97,15 +96,15 @@ public class Level {
 		}
 	}
 	
-	private void addEntities(String path) {
-		addEntity(new Player(Handler.g.getX(), Handler.g.getY(), 64, 84, Id.player, this,Game.key));
+	public void addEntities(String path) {
 		switch (path) {
 		case "res/Maps/map1_roof.json":
-			
+			addEntity(new Player(Handler.g.getX(), Handler.g.getY(), 64, 84, Id.player, this,Game.key));
+		//	addEntity(new npc(2500,2500,64,84,Id.blacksmith));
 			break;
 		case "res/Maps/map1_noroof.json":
-			System.out.println("No roof");
-			addEntity(new npc(1792,2100,64,84,Id.blacksmith));
+			addEntity(new Player(Handler.g.getX(), Handler.g.getY(), 64, 84, Id.player, this,Game.key));
+		//	addEntity(new npc(1792,2100,64,84,Id.blacksmith));
 			break;
 		}
 	}

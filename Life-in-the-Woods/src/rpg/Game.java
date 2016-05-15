@@ -47,7 +47,7 @@ public class Game extends Canvas implements Runnable {
 	public static KeyInput key;
 	public static Handler handler;
 
-	public static long[] data = new long[10000];
+	public static long[] data = new long[100000];
 
 	public static Sprite[] player = new Sprite[36];
 
@@ -151,10 +151,6 @@ public class Game extends Canvas implements Runnable {
 		gui.init();
 		
 		Quest quest = new Quest();
-		System.out.println(quest.getBounty(2));
-		System.out.println(quest.getBountyAmount(2));
-		System.out.println(quest.getProgress(2));
-		System.out.println(quest);
 
 		// handler.ChangeMusic(1,1,false);
 	}
@@ -277,19 +273,53 @@ public class Game extends Canvas implements Runnable {
 		return dbi;
 	}
 
-	public static void changeLevel(int map, int x, int y) {
+	public static void changeLevel(int map) {
+		/*System.out.println("Spieler Positionen:");
+		System.out.println("X Position: " + level.getPlayer().getX());
+		System.out.println("Y Position: " + level.getPlayer().getY());
+		System.out.println("");
+		System.out.println("Savegame Position:");
+		System.out.println("X Position: " + Handler.g.getX());
+		System.out.println("Y Position: " + Handler.g.getY());
+		System.out.println("");
+		Handler.g.setX(level.getPlayer().getX()-250);
+		Handler.g.setY(level.getPlayer().getY()-250);
+		System.out.println("Savegame Position:");
+		System.out.println("X Position: " + Handler.g.getX());
+		System.out.println("Y Position: " + Handler.g.getY());
+		System.out.println("");
+		level.getPlayer().setX(Handler.g.getX());
+		level.getPlayer().setY(Handler.g.getY());
+		System.out.println("Spieler Position:");
+		System.out.println("X Position: " + Handler.g.getX());
+		System.out.println("Y Position: " + Handler.g.getY());*/
+		
+		
+		String a = null;
 		switch (map) {
 		case Level.MAP:
 			level = Level.map1;
+			a = "res/Maps/map1_roof.json";
 			break;
 		case Level.MAP_NOROOF:
 			level = Level.map2;
+			a = "res/Maps/map1_noroof.json";
 			break;
 		}
-
-		level.getPlayer().setX(Handler.g.getX() + x);
-		//level.getPlayer().setY(level.getPlayer().getY() + y);
+		
+		int x = level.getPlayer().getX();
+		int y = level.getPlayer().getY() - 250;
+		
+		level.getPlayer().setX(x);
 		level.getPlayer().setY(y);
+		
+		Handler.g.setX(x);
+		Handler.g.setY(y);
+		
+		level.addEntities(a);
+		
+		
+		
 		level.getPlayer().changeLevel = false;
 
 	}
