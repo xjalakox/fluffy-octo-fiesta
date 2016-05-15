@@ -14,7 +14,7 @@ public class ImageUtils {
 		BufferedImage image = null;
 		try {
 			System.out.println("Lade Bild: " + path);
-			image = ImageIO.read(new File(path));
+			image = ImageIO.read(ImageUtils.class.getResourceAsStream(path));
 		} catch (IOException e) {
 			System.err.println("Fehler beim Laden von Bild: " + path);
 		}

@@ -15,8 +15,7 @@ public class CustomCursor {
 	
 	public CustomCursor(String CursorName){
 		 try {
-             //Toolkit kit = Toolkit.getDefaultToolkit();
-             cursorImage = ImageIO.read(new File("res/Cursor/" + "cursor_" + CursorName + ".png"));
+             cursorImage = ImageIO.read(CustomCursor.class.getResourceAsStream("/Cursor/" + "cursor_" + CursorName + ".png"));
              for (int i = 0; i < cursorImage.getHeight(); i++) {
                  int[] rgb = cursorImage.getRGB(0, i, cursorImage.getWidth(), 1, null, 0, cursorImage.getWidth() * 4);
                  for (int j = 0; j < rgb.length; j++) {

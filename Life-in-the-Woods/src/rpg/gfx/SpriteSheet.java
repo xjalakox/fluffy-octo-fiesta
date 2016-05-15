@@ -11,7 +11,7 @@ public class SpriteSheet {
 	
 	public SpriteSheet(String path) {
 		try {
-			sheet = ImageIO.read(getClass().getResourceAsStream(path));
+			sheet = ImageIO.read(SpriteSheet.class.getResourceAsStream(path));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

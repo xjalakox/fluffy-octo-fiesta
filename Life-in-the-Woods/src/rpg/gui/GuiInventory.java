@@ -29,8 +29,8 @@ public class GuiInventory extends GuiElement {
 		loadButtons();
 		updateInv = false;
 		
-		inv = ImageUtils.loadImage("res/Inventory/inv.png");
-		player = ImageUtils.loadImage("res/Inventory/player.png");
+		inv = ImageUtils.loadImage("/Inventory/inv.png");
+		player = ImageUtils.loadImage("/Inventory/player.png");
 	}
 	
 	public void loadButtons() {

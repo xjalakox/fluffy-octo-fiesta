@@ -3,7 +3,9 @@ package rpg;
 import java.awt.EventQueue;
 import java.awt.Frame;
 import java.awt.Image;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -67,8 +69,12 @@ public class Loadingscreen extends JFrame {
 		mainpanel.setLayout(null);
 		super.add(mainpanel);
 		
-		Image image1 = new ImageIcon(this.getClass().getResource("/Menu/homescreen.jpg")).getImage();
-		
+		Image image1 = null;
+		try {
+			image1 = ImageIO.read(Loadingscreen.class.getResourceAsStream("/Menu/homescreen.jpg"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		mainlabel = new JLabel(new ImageIcon(image1));
 		mainlabel.doLayout();

@@ -10,8 +10,9 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
+import java.io.IOException;
 
-import javax.swing.ImageIcon;
+import javax.imageio.ImageIO;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -66,13 +67,18 @@ public class Game extends Canvas implements Runnable {
 
 	public static Level level;
 
-	public Image scrolltext_bg = new ImageIcon(this.getClass().getResource("/Scrolltext/background.png")).getImage();
+	public Image scrolltext_bg;
 	public ImageObserver observer;
 
 	Gui gui = new Gui();
 	TextDraw draw = new TextDraw();
 
 	public Game() {
+		try {
+			scrolltext_bg = ImageIO.read(Game.class.getResourceAsStream("/Scrolltext/background.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		Dimension size = new Dimension(WIDTH * SCALE, HEIGHT * SCALE);
 		setPreferredSize(size);
 		setMaximumSize(size);
@@ -274,26 +280,6 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public static void changeLevel(int map) {
-		/*System.out.println("Spieler Positionen:");
-		System.out.println("X Position: " + level.getPlayer().getX());
-		System.out.println("Y Position: " + level.getPlayer().getY());
-		System.out.println("");
-		System.out.println("Savegame Position:");
-		System.out.println("X Position: " + Handler.g.getX());
-		System.out.println("Y Position: " + Handler.g.getY());
-		System.out.println("");
-		Handler.g.setX(level.getPlayer().getX()-250);
-		Handler.g.setY(level.getPlayer().getY()-250);
-		System.out.println("Savegame Position:");
-		System.out.println("X Position: " + Handler.g.getX());
-		System.out.println("Y Position: " + Handler.g.getY());
-		System.out.println("");
-		level.getPlayer().setX(Handler.g.getX());
-		level.getPlayer().setY(Handler.g.getY());
-		System.out.println("Spieler Position:");
-		System.out.println("X Position: " + Handler.g.getX());
-		System.out.println("Y Position: " + Handler.g.getY());*/
-		
 		
 		String a = null;
 		switch (map) {

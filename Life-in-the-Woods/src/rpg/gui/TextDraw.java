@@ -5,7 +5,9 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.ImageObserver;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 import rpg.Game;
@@ -16,7 +18,7 @@ public class TextDraw {
 	private static String draw = "";
 	private static String draw2 = "";
 
-	private Image scrolltext_bg = new ImageIcon(this.getClass().getResource("/Scrolltext/background.png")).getImage();
+	private static Image scrolltext_bg;
 	private ImageObserver observer;
 	private Boolean test = false;
 
@@ -24,6 +26,11 @@ public class TextDraw {
 	private Color textc = new Color(138, 60, 34);
 
 	public static void drawText(int id) {
+		try {
+			scrolltext_bg = ImageIO.read(TextDraw.class.getResourceAsStream("/Scrolltext/background.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		text = Game.handler.texts.getText(id - 1);
 	}
 

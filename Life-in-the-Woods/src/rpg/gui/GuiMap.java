@@ -22,8 +22,8 @@ public class GuiMap extends GuiElement {
 		this.zoom = 1;
 		this.mapX =  1* zoom;
 		this.mapY = 1 * zoom;
-		this.image = ImageUtils.loadImage("res/Gui/map.png");
-		this.border = ImageUtils.loadImage("res/Gui/border.png");
+		this.image = ImageUtils.loadImage("/Gui/map.png");
+		this.border = ImageUtils.loadImage("/Gui/border.png");
 	}
 
 	@Override
