@@ -74,7 +74,7 @@ public class Level {
 							
 						}else if(ids==1661||ids==1693&&j!=2){
 							addBTile(new Backg(a*32,b*32,32,32,Id.render_player_first,false,(long) data.get(i)));
-						}else if(ids>=320&&ids<=360&&j!=2){
+						}else if(ids>=320&&ids<=360&&j!=2&&ids!=326){
 							addTile(new obj(a*32,b*32,32,32,Id.nocollision,false,(long) data.get(i)));
 						}else if(ids==193&&j!=2){
 							addTile(new obj(a*32,b*32,32,32,Id.ground,false,(long) data.get(i)));
