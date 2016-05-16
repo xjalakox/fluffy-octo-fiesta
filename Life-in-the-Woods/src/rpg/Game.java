@@ -69,6 +69,8 @@ public class Game extends Canvas implements Runnable {
 
 	public Image scrolltext_bg;
 	public ImageObserver observer;
+	
+	public static Quest quests = new Quest();
 
 	Gui gui = new Gui();
 	TextDraw draw = new TextDraw();
@@ -155,10 +157,8 @@ public class Game extends Canvas implements Runnable {
 		addMouseWheelListener(mouse);
 
 		gui.init();
-		
-		Quest quest = new Quest();
 
-		// handler.ChangeMusic(1,1,false);
+		handler.ChangeMusic(1,1,false);
 	}
 
 	private void initSprite() {

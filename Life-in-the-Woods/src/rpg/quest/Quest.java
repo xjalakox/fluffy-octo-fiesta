@@ -7,7 +7,7 @@ import rpg.inventory.items.Kirsche;
 import rpg.json.JSONDecoder;
 
 public class Quest {
-	private Quests[] quests;
+	public static Quests[] quests;
 	
 	
 	public Quest() {

@@ -35,6 +35,8 @@ public class Level {
 	public List<BackgroundTile> btile = new ArrayList<BackgroundTile>();
 	public List<Tile> tiles = new ArrayList<Tile>();
 	
+	npc test = new npc(2000,2500,64,84,Id.blacksmith,rpg.quest.Quest.quests[1]);
+	
 	private JSONObject levelData;	
 	
 	public Level(String path) {
@@ -83,9 +85,6 @@ public class Level {
 						}else if(ids<=4000&&ids>=0&&j!=2){
 							addTile(new obj(a*32,b*32,32,32,Id.obj,true,(long) data.get(i)));
 						}else{
-							System.out.println(ids);
-							System.out.println(a);
-							System.out.println(b);
 							addTile(new obj(a*32,b*32,32,32,Id.nocollision,false,(long) data.get(i)));
 						}
 						a++;
@@ -105,7 +104,7 @@ public class Level {
 		switch (path) {
 		case "res/Maps/map1_roof.json":
 			addEntity(new Player(Handler.g.getX(), Handler.g.getY(), 64, 84, Id.player, this,Game.key));
-			addEntity(new npc(2000,2500,64,84,Id.blacksmith));
+			addEntity(test);
 			break;
 		case "res/Maps/map1_noroof.json":
 			addEntity(new Player(Handler.g.getX(), Handler.g.getY(), 64, 84, Id.player, this,Game.key));

@@ -4,8 +4,8 @@ public enum SoundID {
     //template      (   id, name,           vol),
      
     //Music
-    intro           (   1,  "intro",        3),
-    world1          (   2,  "athletic",     3),
+    intro           (   1,  "intro",        2),
+    world1          (   2,  "athletic",     2),
 
      
     //Effects
@@ -22,7 +22,7 @@ public enum SoundID {
     private String suffix = ".wav";
     private String name;
     // musicvol // effectvol // mastervol//
-    private int[] volList = { -20, -20, -20};
+    private int[] volList = { 6, 6, 6};
     private int vol;
      
     SoundID(int id, String name, int vol) {

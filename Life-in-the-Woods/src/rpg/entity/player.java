@@ -11,7 +11,10 @@ import rpg.level.Level;
 import rpg.tile.Tile;
 
 
+
+
 import static rpg.Handler.g;
+import static rpg.quest.Quest.quests;
 
 
 public class Player extends Entity {
@@ -135,7 +138,6 @@ public class Player extends Entity {
 				if(getBounds().intersects(en.getBoundsBottom())){
 					if(key.talk_npc){
 						en.facing = 2;
-						TextDraw.drawText(1);
 					}
 					KeyInput.up = false;
 				}

@@ -1,4 +1,4 @@
-package rpg.entity;
+package rpg.entity; 
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -6,10 +6,12 @@ import java.awt.Rectangle;
 
 import rpg.Game;
 import rpg.Id;
+import rpg.quest.Quest;
+import rpg.quest.Quests;
 
 public class npc extends Entity {
-
-	public npc(int x, int y, int w, int h, Id id) {
+	
+	public npc(int x, int y, int w, int h, Id id,Quests quests) {
 		super(x, y, w, h, id);
 	}
 	
@@ -37,7 +39,7 @@ public class npc extends Entity {
 	public void moveUp(){
 
 	}
-	
+
 	public Rectangle getBoundsBottom(){
 		return new Rectangle(getX()+7, getY()+85, getW()-14, getH()-65);
 	}

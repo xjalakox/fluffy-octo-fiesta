@@ -1,0 +1,13 @@
+{
+	"1":{
+		"npc" : "Schmied",
+		"text" :[
+					"Hallo ich bin der$Schmied dieser Stadt.$Womit kann ich dir$behilflich sein?",
+					"test2"
+				]
+	},
+	"2":{
+		"npc" : "Oma",
+		"text" : ["text1","text"]
+	}
+}

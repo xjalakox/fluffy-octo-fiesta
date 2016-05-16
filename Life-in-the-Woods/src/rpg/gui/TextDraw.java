@@ -33,6 +33,15 @@ public class TextDraw {
 		}
 		text = Game.handler.texts.getText(id - 1);
 	}
+	
+	public static void drawText(String string) {
+		try {
+			scrolltext_bg = ImageIO.read(TextDraw.class.getResourceAsStream("/Scrolltext/background.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		text = string;
+	}
 
 	private int time = 0;
 	private boolean drawing;
@@ -50,10 +59,10 @@ public class TextDraw {
 	}
 
 	public void tick() {
-		time++;
 		if (!text.isEmpty() && text.length() > cur) {
+			time++;
 			drawing = true;
-			if (time % 4 == 0) {
+			if (time % 6 == 0) {
 				time = 0;
 				char c = text.charAt(cur);
 				if (c == '$') {
@@ -65,15 +74,15 @@ public class TextDraw {
 				}
 				cur++;
 			}
-		} else {
-			if (drawing) {
-				drawing = false;
-				text = "";
-				cur = 0;
-				draw = "";
-				draw2 = "";
-			}
+		}else if(drawing&&time>59) {
+			drawing = false;
+			time++;
+			text = "";
+			cur = 0;
+			draw = "";
+			draw2 = "";
+		}else{
+			time++;
 		}
-
 	}
 }
