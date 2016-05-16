@@ -52,6 +52,14 @@ public class Gui {
 			inventory.setVisible(false);
 			addGuiElement(inventory);
 
+			GuiButton quest_bg = new GuiButton(0, 0, 0, 0, ImageIO.read(Gui.class.getResourceAsStream("/Gui/quest_bg.png")),
+					new GuiAction() {
+						public void action() {
+						}
+					});
+			quest_bg.setVisible(false);
+			addGuiElement(quest_bg);
+			
 			GuiButton cancel_button = new GuiButton(1750, 20, 0, 0, ImageIO.read(Gui.class.getResourceAsStream("/Buttons/cancel.png")),
 					new GuiAction() {
 						public void action() {
@@ -77,8 +85,7 @@ public class Gui {
 					});
 			addGuiElement(menu_button);
 
-			GuiButton inventory_button = new GuiButton(1620, 930, 0, 0,
-					ImageIO.read(Gui.class.getResourceAsStream("/Buttons/inventory.png")), new GuiAction() {
+			GuiButton inventory_button = new GuiButton(1620, 930, 0, 0,	ImageIO.read(Gui.class.getResourceAsStream("/Buttons/inventory.png")), new GuiAction() {
 						public void action() {
 							inventory.setVisible(!inventory.isVisible());
 							inventory.updateInventory();
@@ -89,7 +96,7 @@ public class Gui {
 			GuiButton quest_button = new GuiButton(1460, 935, 0, 0, ImageIO.read(Gui.class.getResourceAsStream("/Buttons/quest.png")),
 					new GuiAction() {
 						public void action() {
-
+							quest_bg.setVisible(!quest_bg.isVisible());
 						}
 					});
 			addGuiElement(quest_button);

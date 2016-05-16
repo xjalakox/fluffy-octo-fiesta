@@ -159,6 +159,8 @@ public class Game extends Canvas implements Runnable {
 		gui.init();
 
 		handler.ChangeMusic(1,1,false);
+		handler.manager.setVolume(1, -20);
+		
 	}
 
 	private void initSprite() {
