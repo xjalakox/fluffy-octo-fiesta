@@ -1,20 +1,15 @@
 package rpg.entity;
 
+import static rpg.Handler.g;
+
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import rpg.Game;
 import rpg.Id;
 import rpg.KeyInput;
-import rpg.gui.TextDraw;
 import rpg.level.Level;
 import rpg.tile.Tile;
-
-
-
-
-import static rpg.Handler.g;
-import static rpg.quest.Quest.quests;
 
 
 public class Player extends Entity {
@@ -23,6 +18,7 @@ public class Player extends Entity {
 	private KeyInput key;
 	private Level level;
 	private int anim;
+	public boolean talking_with_npc;
 
 	public Player(int x, int y, int w, int h, Id id, Level l, KeyInput key) {
 		super(x, y, w, h, id);
@@ -49,7 +45,7 @@ public class Player extends Entity {
 			anim = 3;
 		}
 
-		g.drawRect(getX()+7, getY()+65, getW()-14, getH()-65);
+		g.drawRect(getX(),getY(),getW(),getH());
 	}
 
 	@Override
@@ -110,7 +106,6 @@ public class Player extends Entity {
 					Game.changeLevel(Level.MAP_NOROOF);
 					changeLevel = true;
 					System.out.println("change level in");
-					//Game.handler.ChangeMusic(1,1,true);	
 				}
 				if(getBounds().intersects(t.getBoundsTop())&& !changeLevel) {
 					Game.changeLevel(Level.MAP_NOROOF);
@@ -136,26 +131,42 @@ public class Player extends Entity {
 		for(Entity en:  level.entities) {
 			if(en.getId()==Id.blacksmith){
 				if(getBounds().intersects(en.getBoundsBottom())){
-					if(key.talk_npc){
+					if(key.talk_npc&&!talking_with_npc){
 						en.facing = 2;
+						((npc)en).talk();
+						//((npc)en).setTextId(1);
+						Game.texte.saveTexts();
+						talking_with_npc = true;
 					}
 					KeyInput.up = false;
 				}
 				if(getBounds().intersects(en.getBoundsRight())){
-					if(key.talk_npc){
+					if(key.talk_npc&&!talking_with_npc){
 						en.facing = 3;
+						((npc)en).talk();
+						//((npc)en).setTextId(1);
+						Game.texte.saveTexts();
+						talking_with_npc = true;
 					}
 					KeyInput.left = false;
 				}
 				if(getBounds().intersects(en.getBoundsLeft())){
-					if(key.talk_npc){
+					if(key.talk_npc&&!talking_with_npc){
 						en.facing = 1;
+						((npc)en).talk();
+					//	((npc)en).setTextId(1);
+						Game.texte.saveTexts();
+						talking_with_npc = true;
 					}
 					KeyInput.right = false;
 				}
 				if(getBounds().intersects(en.getBoundsTop())){
-					if(key.talk_npc){
+					if(key.talk_npc&&!talking_with_npc){
 						en.facing = 0;
+						((npc)en).talk();
+						//((npc)en).setTextId(1);
+						Game.texte.saveTexts();
+						talking_with_npc = true;
 					}
 					KeyInput.down = false;
 				}

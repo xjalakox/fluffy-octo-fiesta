@@ -8,9 +8,9 @@ import java.awt.image.ImageObserver;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 
 import rpg.Game;
+import rpg.entity.Player;
 
 public class TextDraw {
 
@@ -24,15 +24,6 @@ public class TextDraw {
 
 	private int cur = 0;
 	private Color textc = new Color(138, 60, 34);
-
-	public static void drawText(int id) {
-		try {
-			scrolltext_bg = ImageIO.read(TextDraw.class.getResourceAsStream("/Scrolltext/background.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		text = Game.handler.texts.getText(id - 1);
-	}
 	
 	public static void drawText(String string) {
 		try {
@@ -62,7 +53,7 @@ public class TextDraw {
 		if (!text.isEmpty() && text.length() > cur) {
 			time++;
 			drawing = true;
-			if (time % 6 == 0) {
+			if (time % 3 == 0) {
 				time = 0;
 				char c = text.charAt(cur);
 				if (c == '$') {
@@ -82,6 +73,7 @@ public class TextDraw {
 			draw = "";
 			draw2 = "";
 		}else{
+			Game.level.getPlayer().talking_with_npc = false;
 			time++;
 		}
 	}

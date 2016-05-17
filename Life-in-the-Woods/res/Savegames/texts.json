@@ -1,13 +1,1 @@
-{
-	"1":{
-		"npc" : "Schmied",
-		"text" :[
-					"Hallo ich bin der$Schmied dieser Stadt.$Womit kann ich dir$behilflich sein?",
-					"test2"
-				]
-	},
-	"2":{
-		"npc" : "Oma",
-		"text" : ["text1","text"]
-	}
-}
+{"Schmied":{"text":["Schmied: Hallo ich bin$der Schmied dieser Stadt.$Womit kann ich dir$behilflich sein?$           $Ich: Ich brauche Schwert$und Bogen$            $Ok da kann ich dir helfen$Allerdings musst du mir$das Holz und das Eisen$besorgen.$Ich gebe dir noch einen$Beutel und 10 Münzen mit","test"],"id":0},"Oma":{"text":["text1","text"],"id":0}}

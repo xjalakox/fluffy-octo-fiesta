@@ -1,4 +1,4 @@
-Hallo ich bin der$Schmied dieser Stadt.$Womit kann ich dir$behilflich sein?
+a 
 b 
 c 
 null 
@@ -23,7 +23,7 @@ null
 null 
 null 
 null 
-null
+null 
 null 
 null 
 null 

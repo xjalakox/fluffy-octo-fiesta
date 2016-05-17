@@ -2,8 +2,6 @@ package rpg.quest;
 
 import org.json.simple.JSONObject;
 
-import rpg.inventory.items.Himbeere;
-import rpg.inventory.items.Kirsche;
 import rpg.json.JSONDecoder;
 
 public class Quest {
@@ -16,7 +14,7 @@ public class Quest {
 	}
 	
 	private void loadQuests() {
-		JSONObject obj = JSONDecoder.loadQuestData("res/Savegames/quests.json");
+		JSONObject obj = JSONDecoder.loadData("res/Savegames/quests.json");
 		
 		
 		/*

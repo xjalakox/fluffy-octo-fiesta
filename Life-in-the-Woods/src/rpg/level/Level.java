@@ -15,8 +15,11 @@ import rpg.Id;
 import rpg.Loadingscreen;
 import rpg.entity.Entity;
 import rpg.entity.Player;
+import rpg.entity.Schmied;
 import rpg.entity.npc;
+import rpg.entity.test;
 import rpg.json.JSONDecoder;
+import rpg.json.Texts;
 import rpg.tile.Backg;
 import rpg.tile.BackgroundTile;
 import rpg.tile.Tile;
@@ -34,8 +37,7 @@ public class Level {
 	public List<Entity> entities = new ArrayList<Entity>();
 	public List<BackgroundTile> btile = new ArrayList<BackgroundTile>();
 	public List<Tile> tiles = new ArrayList<Tile>();
-	
-	npc test = new npc(2000,2500,64,84,Id.blacksmith,rpg.quest.Quest.quests[1]);
+	//npc test2 = new npc(2200,2500,64,84,Id.blacksmith,"Oma",this,rpg.quest.Quest.quests[1]);
 	
 	private JSONObject levelData;	
 	
@@ -48,7 +50,7 @@ public class Level {
 	private void loadLevel(String path) {
 		try {
 			System.out.println("Lade level: " + path);
-			levelData = JSONDecoder.loadMapData(path);
+			levelData = JSONDecoder.loadData(path);
 		} catch(Exception e) {
 			e.printStackTrace();
 			System.err.println("Fehler beim Laden von level: " + path);
@@ -104,11 +106,14 @@ public class Level {
 		switch (path) {
 		case "res/Maps/map1_roof.json":
 			addEntity(new Player(Handler.g.getX(), Handler.g.getY(), 64, 84, Id.player, this,Game.key));
-			addEntity(test);
+			addEntity(new Schmied(3600,3500,64,84,this));
+			
+			
+			//addEntity(test2);
 			break;
 		case "res/Maps/map1_noroof.json":
 			addEntity(new Player(Handler.g.getX(), Handler.g.getY(), 64, 84, Id.player, this,Game.key));
-		//	addEntity(new npc(1792,2100,64,84,Id.blacksmith));
+			//addEntity(new npc(2000,2500,64,84,Id.blacksmith,"Schmied",this,rpg.quest.Quest.quests[0]));
 			break;
 		}
 	}

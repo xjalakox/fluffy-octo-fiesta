@@ -3,6 +3,7 @@ package rpg;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -23,6 +24,7 @@ import rpg.gfx.SpriteSheet;
 import rpg.gui.Gui;
 import rpg.gui.TextDraw;
 import rpg.json.JSONDecoder;
+import rpg.json.Texts;
 import rpg.level.Level;
 import rpg.quest.Quest;
 
@@ -71,6 +73,8 @@ public class Game extends Canvas implements Runnable {
 	public ImageObserver observer;
 	
 	public static Quest quests = new Quest();
+	
+	public static Texts texte = new Texts();
 
 	Gui gui = new Gui();
 	TextDraw draw = new TextDraw();
@@ -135,13 +139,17 @@ public class Game extends Canvas implements Runnable {
 
 		draw.render(g);
 		gui.render(g);
+		String f = String.valueOf(fps);
+		String u = String.valueOf(ups);
+		g.setFont(new Font("Arial", Font.BOLD, 32));
+		g.drawString("FPS: " + f, 50, 50);
+		g.drawString("UPS: " + u, 50, 100);
 
 		g.dispose();
 		bs.show();
 	}
 
 	public void init() {
-
 		key = new KeyInput();
 		handler = new Handler();
 		level = Level.map1;
@@ -185,7 +193,7 @@ public class Game extends Canvas implements Runnable {
 		sheets[11] = new SpriteSheet("/Tiles/statues.png");
 		sheets[12] = new SpriteSheet("/Tiles/trees.png");
 
-		JSONObject map1 = JSONDecoder.loadMapData(map1_noroof);
+		JSONObject map1 = JSONDecoder.loadData(map1_noroof);
 
 		int z = 0;
 
@@ -254,8 +262,8 @@ public class Game extends Canvas implements Runnable {
 				ups = ticks;
 				frames = 0;
 				ticks = 0;
-				System.out.println("FPS: " + fps);
-				System.out.println("Ticks: " + ups);
+				//System.out.println("FPS: " + fps);
+				//System.out.println("Ticks: " + ups);
 			}
 		}
 		stop();
