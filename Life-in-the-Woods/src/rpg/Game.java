@@ -24,6 +24,7 @@ import rpg.gfx.SpriteSheet;
 import rpg.gui.Gui;
 import rpg.gui.TextDraw;
 import rpg.json.JSONDecoder;
+import rpg.json.Savegame;
 import rpg.json.Texts;
 import rpg.level.Level;
 import rpg.quest.Quest;
@@ -308,9 +309,6 @@ public class Game extends Canvas implements Runnable {
 		
 		level.getPlayer().setX(x);
 		level.getPlayer().setY(y);
-		
-
-		level.addEntities(a);
 		
 		
 		

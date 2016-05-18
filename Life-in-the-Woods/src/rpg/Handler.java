@@ -1,11 +1,13 @@
 package rpg;
 
 import rpg.audio.SoundManager;
+import rpg.json.Savegame;
 
 public class Handler {
 
 	
 	public static SoundManager manager = new SoundManager();
+	public static Savegame g = new Savegame();
 	
 	public Handler() {
 	}

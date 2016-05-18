@@ -1,6 +1,8 @@
 package rpg.entity;
 
 
+import static rpg.Handler.g;
+
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
@@ -58,6 +60,9 @@ public class Player extends Entity {
 					KeyInput.key_enable = true;	
 				}
 			}
+			g.setX(getX());
+			g.setY(getY());
+			g.saveSavegame();
 			System.exit(0);
 		}
 		if(!collision()) {

@@ -26,6 +26,8 @@ import rpg.tile.Tile;
 import rpg.tile.door;
 import rpg.tile.obj;
 
+import static rpg.Handler.*;
+
 public class Level {
 	
 	public static final int MAP = 0;
@@ -105,12 +107,8 @@ public class Level {
 	public void addEntities(String path) {
 		switch (path) {
 		case "Maps/map1_roof.json":
-			addEntity(new Player(3500,3500, 64, 84, Id.player, this,Game.key));
+			addEntity(new Player(g.getX(),g.getY(), 64, 84, Id.player, this,Game.key));
 			addEntity(new Schmied(3600,3500,64,84,this));
-			
-			
-			
-			//addEntity(test2);
 			break;
 		case "Maps/map1_noroof.json":
 			addEntity(new Player(3500,3500, 64, 84, Id.player, this,Game.key));
