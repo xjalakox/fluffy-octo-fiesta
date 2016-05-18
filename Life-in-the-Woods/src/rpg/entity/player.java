@@ -1,6 +1,5 @@
 package rpg.entity;
 
-import static rpg.Handler.g;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -56,8 +55,6 @@ public class Player extends Entity {
 		if(key.escape) {
 			for(Entity en: level.entities) {
 				if(en.getId()==Id.player){
-					g.setX(en.getX());
-					g.setY(en.getY());
 					KeyInput.key_enable = true;	
 				}
 			}

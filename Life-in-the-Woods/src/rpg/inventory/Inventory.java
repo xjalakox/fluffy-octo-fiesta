@@ -15,7 +15,7 @@ public class Inventory {
 	}
 
 	private void loadInventory() {
-		JSONObject obj = JSONDecoder.loadData("res/Savegames/inventory.json");
+		JSONObject obj = JSONDecoder.loadData("Savegames/inventory.json");
 
 		for (int i = 0; i < items.length; i++) {
 			int slot = i + 1;
@@ -44,7 +44,7 @@ public class Inventory {
 				slot++;
 			}
 		}
-		JSONDecoder.saveData("res/Savegames/Inventory.json", slots);
+		JSONDecoder.saveData("Savegames/Inventory.json", slots);
 	}
 
 	public void add(Item i) {

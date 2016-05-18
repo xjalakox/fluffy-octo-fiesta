@@ -46,7 +46,7 @@ public class npc extends Entity {
 	public void tick() {
 		if(!collision()&&!touchplayer()){
 			if(a==0){
-				b = (int)(Math.random() * 8);
+				b = (int)(Math.random() * 6);
 				if(b!=0&&b!=1&&b!=2&&b!=3) {
 					a = (int)(Math.random() * 200) + 25;
 				}else{

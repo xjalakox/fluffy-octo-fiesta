@@ -12,7 +12,7 @@ public class JSONDecoder {
 	public static JSONObject loadData(String file) {
 		JSONParser parser = new JSONParser();
 		try {
-			JSONObject obj = (JSONObject) parser.parse(new FileReader(file));
+			JSONObject obj = (JSONObject) parser.parse(new FileReader("res/" + file));
 			return obj;
 		} catch (Exception e) {
 			System.out.println("Konnte " + file + " nicht laden");
@@ -24,7 +24,7 @@ public class JSONDecoder {
 	public static void saveData(String file, JSONObject obj) {
 		FileWriter fw;
 		try {
-			fw = new FileWriter(file);
+			fw = new FileWriter("res/" + file);
 			fw.write(obj.toJSONString());
 			fw.flush();
 			fw.close();

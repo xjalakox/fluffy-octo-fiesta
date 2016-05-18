@@ -31,8 +31,8 @@ public class Level {
 	public static final int MAP = 0;
 	public static final int MAP_NOROOF = 1;
 	
-	public static Level map1 = new Level("res/Maps/map1_roof.json");
-	public static Level map2 = new Level("res/Maps/map1_noroof.json");
+	public static Level map1 = new Level("Maps/map1_roof.json");
+	public static Level map2 = new Level("Maps/map1_noroof.json");
 	
 	public List<Entity> entities = new ArrayList<Entity>();
 	public List<BackgroundTile> btile = new ArrayList<BackgroundTile>();
@@ -104,15 +104,16 @@ public class Level {
 	
 	public void addEntities(String path) {
 		switch (path) {
-		case "res/Maps/map1_roof.json":
-			addEntity(new Player(Handler.g.getX(), Handler.g.getY(), 64, 84, Id.player, this,Game.key));
+		case "Maps/map1_roof.json":
+			addEntity(new Player(3500,3500, 64, 84, Id.player, this,Game.key));
 			addEntity(new Schmied(3600,3500,64,84,this));
+			
 			
 			
 			//addEntity(test2);
 			break;
-		case "res/Maps/map1_noroof.json":
-			addEntity(new Player(Handler.g.getX(), Handler.g.getY(), 64, 84, Id.player, this,Game.key));
+		case "Maps/map1_noroof.json":
+			addEntity(new Player(3500,3500, 64, 84, Id.player, this,Game.key));
 			//addEntity(new npc(2000,2500,64,84,Id.blacksmith,"Schmied",this,rpg.quest.Quest.quests[0]));
 			break;
 		}

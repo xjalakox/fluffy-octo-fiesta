@@ -14,7 +14,7 @@ public class Quest {
 	}
 	
 	private void loadQuests() {
-		JSONObject obj = JSONDecoder.loadData("res/Savegames/quests.json");
+		JSONObject obj = JSONDecoder.loadData("Savegames/quests.json");
 		
 		
 		/*

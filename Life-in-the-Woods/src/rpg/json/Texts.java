@@ -24,7 +24,7 @@ public class Texts {
 		for(String name : namen) {
 			int textid = 0;
 			String[] texts = new String[50];
-			JSONObject decode = JSONDecoder.loadData("res/Savegames/texts.json");
+			JSONObject decode = JSONDecoder.loadData("Savegames/texts.json");
 			JSONObject textObj = (JSONObject) decode.get(name);
 			textid = (int)((long)textObj.get("id"));
 			if(textObj != null) {
@@ -55,6 +55,6 @@ public class Texts {
 			saves.put(name, person);
 			d++;
 		}
-		JSONDecoder.saveData("res/Savegames/texts.json", saves);
+		JSONDecoder.saveData("Savegames/texts.json", saves);
 	}
 }

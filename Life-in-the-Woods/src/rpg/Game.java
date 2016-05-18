@@ -39,8 +39,8 @@ public class Game extends Canvas implements Runnable {
 
 	public static final boolean DEBUG = true;
 
-	public static String map1_noroof = "res/Maps/map1_noroof.json";
-	public static String map1_roof = "res/Maps/map1_roof.json";
+	public static String map1_noroof = "Maps/map1_noroof.json";
+	public static String map1_roof = "Maps/map1_roof.json";
 
 	public static SpriteSheet sheet, items;
 	public static SpriteSheet[] sheets = new SpriteSheet[20];
@@ -309,9 +309,7 @@ public class Game extends Canvas implements Runnable {
 		level.getPlayer().setX(x);
 		level.getPlayer().setY(y);
 		
-		Handler.g.setX(x);
-		Handler.g.setY(y);
-		
+
 		level.addEntities(a);
 		
 		

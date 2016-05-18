@@ -1,19 +1,13 @@
 package rpg;
 
-import rpg.Saves.SaveGame;
-import rpg.Saves.Texts;
 import rpg.audio.SoundManager;
 
 public class Handler {
 
 	
 	public static SoundManager manager = new SoundManager();
-	public static SaveGame g;
-	public Texts texts;
 	
 	public Handler() {
-		g = new SaveGame();
-		texts = new Texts();
 	}
 	
 	public void ChangeMusic(int newMusicID, int oldMusicID, boolean running){
