@@ -8,8 +8,8 @@ import rpg.level.Level;
 
 public class Schmied extends npc {
 
-	public Schmied(int x, int y, int w, int h, Level l) {
-		super(x, y, w, h, Id.blacksmith, "Schmied", l,Game.quests.quests[0]);
+	public Schmied(int x, int y, int w, int h,int SpriteId, Level l) {
+		super(x, y, w, h,SpriteId, Id.blacksmith, "Schmied", l,Game.quests.quests[0]);
 		texte = Texts.texte[0];
 	}
 

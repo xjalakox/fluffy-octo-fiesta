@@ -12,7 +12,7 @@ public class JSONDecoder {
 	public static JSONObject loadData(String file) {
 		JSONParser parser = new JSONParser();
 		try {
-			JSONObject obj = (JSONObject) parser.parse(new FileReader("res/" + file));
+			JSONObject obj = (JSONObject) parser.parse(new FileReader(JSONDecoder.class.getResource("/" + file).getFile()));
 			return obj;
 		} catch (Exception e) {
 			System.out.println("Konnte " + file + " nicht laden");

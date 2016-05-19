@@ -9,7 +9,7 @@ import rpg.level.Level;
 public class test extends npc {
 
 	public test(int x, int y, int w, int h, Level l) {
-		super(x, y, w, h, Id.test, "Schmied", l,Game.quests.quests[0]);
+		super(x, y, w, h, 6,Id.test, "Schmied", l,Game.quests.quests[0]);
 		texte = Texts.texte[0];
 	}
 

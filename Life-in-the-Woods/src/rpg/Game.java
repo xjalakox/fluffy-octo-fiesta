@@ -24,7 +24,6 @@ import rpg.gfx.SpriteSheet;
 import rpg.gui.Gui;
 import rpg.gui.TextDraw;
 import rpg.json.JSONDecoder;
-import rpg.json.Savegame;
 import rpg.json.Texts;
 import rpg.level.Level;
 import rpg.quest.Quest;
@@ -45,6 +44,7 @@ public class Game extends Canvas implements Runnable {
 
 	public static SpriteSheet sheet, items;
 	public static SpriteSheet[] sheets = new SpriteSheet[20];
+	public static SpriteSheet[] npcsheets = new SpriteSheet[10];
 
 	public static Camera cam;
 
@@ -53,14 +53,14 @@ public class Game extends Canvas implements Runnable {
 
 	public static long[] data = new long[100000];
 
-	public static Sprite[] player = new Sprite[36];
-
 	private BufferStrategy bs;
 
 	private int fps, ups;
-
-	public static Sprite[] sprites = new Sprite[8000];
+	
+	public static Sprite[] player = new Sprite[36];
+	public static Sprite[] sprites = new Sprite[4000];
 	public static Sprite[] inv_items = new Sprite[200];
+	public static Sprite[] npc_sprites = new Sprite[360];
 	public static Sprite bg, ground;
 
 	private boolean running = false;
@@ -173,7 +173,6 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	private void initSprite() {
-		sheet = new SpriteSheet("/Character/normal.png");
 		items = new SpriteSheet("/Inventory/items.png");
 
 		for (int i = 0; i < 10; i++) {
@@ -211,6 +210,8 @@ public class Game extends Canvas implements Runnable {
 				}
 			}
 		}
+		
+		sheet = new SpriteSheet("/Character/sword.png");
 
 		int p = 0;
 
@@ -232,6 +233,36 @@ public class Game extends Canvas implements Runnable {
 		for (int i = 27; i < player.length / 4 + 27; i++) {
 			player[i] = new Sprite(sheet, p + 17, 714, 30, 52);
 			p += 64;
+		}
+		
+		npcsheets[0] = new SpriteSheet("/Character/beauty.png");
+		npcsheets[1] = new SpriteSheet("/Character/guard.png");
+		
+		npcsheets[2] = new SpriteSheet("/Character/farmer.png");
+		npcsheets[3] = new SpriteSheet("/Character/farmer2.png");
+		npcsheets[4] = new SpriteSheet("/Character/farmer3.png");
+		npcsheets[5] = new SpriteSheet("/Character/farmer4.png");
+		
+		npcsheets[6] = new SpriteSheet("/Character/woman.png");
+		npcsheets[7] = new SpriteSheet("/Character/woman2.png");
+		npcsheets[8] = new SpriteSheet("/Character/woman3.png");
+		npcsheets[9] = new SpriteSheet("/Character/woman4.png");
+		
+		p = 0;
+		int j = -1;
+		int k = 0;
+		for(int i=0;i<npc_sprites.length;i++){
+			if(i % 9 == 0){
+				p = 0; 
+				k++;
+			}
+			if(i % 36 == 0){
+				k = 0;
+				j++;
+				System.out.println(j);
+			}
+			npc_sprites[i] = new Sprite(npcsheets[j],p+17,k*64+523,30,52);
+			p+=64;
 		}
 	}
 

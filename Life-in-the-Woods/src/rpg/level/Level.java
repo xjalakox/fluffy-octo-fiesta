@@ -108,7 +108,7 @@ public class Level {
 		switch (path) {
 		case "Maps/map1_roof.json":
 			addEntity(new Player(g.getX(),g.getY(), 64, 84, Id.player, this,Game.key));
-			addEntity(new Schmied(3600,3500,64,84,this));
+			addEntity(new Schmied(3600,3500,64,84,72,this));
 			break;
 		case "Maps/map1_noroof.json":
 			addEntity(new Player(3500,3500, 64, 84, Id.player, this,Game.key));
