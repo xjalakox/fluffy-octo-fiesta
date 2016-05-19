@@ -69,9 +69,6 @@ public class Game extends Canvas implements Runnable {
 	public static Color textc = new Color(138, 60, 34);
 
 	public static Level level;
-
-	public Image scrolltext_bg;
-	public ImageObserver observer;
 	
 	public static Quest quests = new Quest();
 	
@@ -81,11 +78,6 @@ public class Game extends Canvas implements Runnable {
 	TextDraw draw = new TextDraw();
 
 	public Game() {
-		try {
-			scrolltext_bg = ImageIO.read(Game.class.getResourceAsStream("/Scrolltext/background.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		Dimension size = new Dimension(WIDTH * SCALE, HEIGHT * SCALE);
 		setPreferredSize(size);
 		setMaximumSize(size);
