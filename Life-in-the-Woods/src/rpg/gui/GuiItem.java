@@ -45,7 +45,7 @@ public class GuiItem extends GuiElement {
 		g.drawImage(itemImage, x, y, invWidth, invHeight, null);
 		g.setColor(new Color(0x000000));
 		g.setFont(new Font("Arial", Font.BOLD, 16));
-		g.drawString(String.valueOf(anzahl), x+12, y+12);
+		g.drawString(String.valueOf(item.getAnzahl()), x+12, y+12);
 	}
 	
 	public void tick() {
