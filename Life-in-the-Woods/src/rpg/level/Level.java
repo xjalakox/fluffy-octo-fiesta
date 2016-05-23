@@ -105,7 +105,7 @@ public class Level {
 		case "Maps/map1_roof.json":
 			addEntity(new Player(g.getX(), g.getY(), 64, 84, Id.player, this, Game.key));
 			addEntity(new Schmied(3500, 3540, 64, 84, 108, this));
-			addEntity(new test(3200, 3200, 64, 84, 180, this, new Fight(10, 10, 10, 10, 10)));
+			addEntity(new test(3200, 3200, 64, 84, 180, this, new Fight(10, 1, 10, 1000, 10)));
 			break;
 		case "Maps/map1_noroof.json":
 			addEntity(new Player(3500, 3500, 64, 84, Id.player, this, Game.key));

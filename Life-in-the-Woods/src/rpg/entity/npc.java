@@ -195,6 +195,7 @@ public class npc extends Entity {
 
 	public void startfight(){
 		
+		
 	}
 	
 	

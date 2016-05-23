@@ -32,10 +32,10 @@ public class Savegame {
 	
 	public int getLevel() {
 		int i = 83;
+		int level = 1;
 		while(xp - i >= 0){
 			level++;
 			i*=1.111111111;
-			System.out.println("Level: " + level + " XP: " + i);
 		}
 		return level;
 	}

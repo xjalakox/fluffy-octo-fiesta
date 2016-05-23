@@ -20,6 +20,7 @@ public class Player extends Entity {
 	private Level level;
 	private int anim;
 	public boolean talking_with_npc;
+	private boolean fighting;
 
 	public Player(int x, int y, int w, int h, Id id, Level l, KeyInput key) {
 		super(x, y, w, h, id);
@@ -175,9 +176,9 @@ public class Player extends Entity {
 			}
 			
 			if(en.getId()==Id.test){
-				if(getBounds().intersects(en.getBounds())){
-					key.key_enable = false;
+				if(getBounds().intersects(en.getBounds())&&!fighting){
 					((npc) en).startfight();
+					fighting = true;
 				}
 			}
 		}
