@@ -16,6 +16,7 @@ public abstract class Tile {
 	private boolean removed;
 
 	public Id id;
+	public int test;
 	
 	
 	 Tile(int x, int y, int w, int h, Id id,boolean solid,long arrayzahl){

@@ -15,6 +15,7 @@ public abstract class Entity {
 	public boolean removed;
 
 	public boolean animate;
+	public boolean test;
 	
 	 public Entity(int x, int y, int w, int h, Id id){
 			this.x = x;

@@ -105,12 +105,12 @@ public class Player extends Entity {
 		for(Tile t : level.tiles){
 			if(t.getId()==Id.door){
 				if(getBounds().intersects(t.getBoundsBottom())&& !changeLevel) {
-					Game.changeLevel(Level.MAP_NOROOF);
+					Game.changeLevel(Level.MAP_NOROOF,getX(),getY()-150);
 					changeLevel = true;
 					System.out.println("change level in");
 				}
 				if(getBounds().intersects(t.getBoundsTop())&& !changeLevel) {
-					Game.changeLevel(Level.MAP_NOROOF);
+					Game.changeLevel(Level.MAP,getX(),getY()+150);
 					changeLevel = true;
 					System.out.println("change level out");
 				}
@@ -171,6 +171,13 @@ public class Player extends Entity {
 						talking_with_npc = true;
 					}
 					KeyInput.down = false;
+				}
+			}
+			
+			if(en.getId()==Id.test){
+				if(getBounds().intersects(en.getBounds())){
+					key.key_enable = false;
+					((npc) en).startfight();
 				}
 			}
 		}

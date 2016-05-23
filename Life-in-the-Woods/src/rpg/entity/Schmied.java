@@ -2,6 +2,7 @@ package rpg.entity;
 
 import rpg.Game;
 import rpg.Id;
+import rpg.fight.Fight;
 import rpg.gui.TextDraw;
 import rpg.json.Texts;
 import rpg.level.Level;
@@ -16,5 +17,6 @@ public class Schmied extends npc {
 	public void talk() {
 		TextDraw.drawText(texte.getTexte()[texte.getTextId()]);
 	}
+	
 	
 }

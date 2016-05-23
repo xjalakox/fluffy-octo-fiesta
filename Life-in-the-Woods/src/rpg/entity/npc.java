@@ -1,6 +1,5 @@
 package rpg.entity; 
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
@@ -47,20 +46,21 @@ public class npc extends Entity {
 
 	@Override
 	public void tick() {
-		animate();
 		if(!collision()&&!touchplayer()){
 			if(a==0){
+				animate = false;
 				c = b;
 				b = (int)(Math.random() * 6);
 				if(b!=0&&b!=1&&b!=2&&b!=3) {
 					animate = false;
+					frame = 0;
 					a = 50;
 				}else{
-					animate = true;
 					facing = c;
 					a = (int)(Math.random() * 200) + 25;
 				}
 			}else{
+				animate = true;
 				if(b==3){
 					facing = 3;
 					x +=1;
@@ -80,7 +80,10 @@ public class npc extends Entity {
 			}
 		}else{
 			animate = false;
+			a = 0;
+			frame = 0;
 		}
+		animate();
 
 	}
 	
@@ -188,6 +191,10 @@ public class npc extends Entity {
 	@Override
 	public Rectangle getBounds() {
 		return new Rectangle(getX()-25, getY()-25, getW()+50, getH()+50);
+	}
+
+	public void startfight(){
+		
 	}
 	
 	

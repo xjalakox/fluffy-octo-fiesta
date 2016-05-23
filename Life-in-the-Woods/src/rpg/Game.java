@@ -6,15 +6,9 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -137,6 +131,8 @@ public class Game extends Canvas implements Runnable {
 		g.setFont(new Font("Arial", Font.BOLD, 32));
 		g.drawString("FPS: " + f, 50, 50);
 		g.drawString("UPS: " + u, 50, 100);
+		
+		
 
 		g.dispose();
 		bs.show();
@@ -203,7 +199,7 @@ public class Game extends Canvas implements Runnable {
 			}
 		}
 		
-		sheet = new SpriteSheet("/Character/sword.png");
+		sheet = new SpriteSheet("/Character/beauty.png");
 
 		int p = 0;
 
@@ -251,7 +247,6 @@ public class Game extends Canvas implements Runnable {
 			if(i % 36 == 0){
 				k = 0;
 				j++;
-				System.out.println(j);
 			}
 			npc_sprites[i] = new Sprite(npcsheets[j],p+17,k*64+523,30,52);
 			p+=64;
@@ -313,7 +308,7 @@ public class Game extends Canvas implements Runnable {
 		return dbi;
 	}
 
-	public static void changeLevel(int map) {
+	public static void changeLevel(int map,int x,int y) {
 		
 		String a = null;
 		switch (map) {
@@ -326,9 +321,6 @@ public class Game extends Canvas implements Runnable {
 			a = "res/Maps/map1_noroof.json";
 			break;
 		}
-		
-		int x = level.getPlayer().getX();
-		int y = level.getPlayer().getY() - 250;
 		
 		level.getPlayer().setX(x);
 		level.getPlayer().setY(y);
