@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -21,6 +22,7 @@ import rpg.json.JSONDecoder;
 import rpg.json.Texts;
 import rpg.level.Level;
 import rpg.quest.Quest;
+import rpg.util.ImageUtils;
 
 @SuppressWarnings("serial")
 public class Game extends Canvas implements Runnable {
@@ -71,6 +73,10 @@ public class Game extends Canvas implements Runnable {
 	Gui gui = new Gui();
 	TextDraw draw = new TextDraw();
 
+	private BufferedImage fightscene,fight_gui;
+
+	public static boolean fighting;
+
 	public Game() {
 		Dimension size = new Dimension(WIDTH * SCALE, HEIGHT * SCALE);
 		setPreferredSize(size);
@@ -120,6 +126,8 @@ public class Game extends Canvas implements Runnable {
 		Graphics2D g2d = (Graphics2D) g;
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, WIDTH * SCALE + 100, HEIGHT * SCALE + 100);
+
+		
 		g2d.translate(cam.getX(), cam.getY());
 		level.render(g);
 		g2d.translate(-cam.getX(), -cam.getY());
@@ -133,6 +141,12 @@ public class Game extends Canvas implements Runnable {
 		g.drawString("UPS: " + u, 50, 100);
 		
 		
+		
+		if(!fighting){
+			System.out.println("WHY?");
+			g.drawImage(fightscene , 0, 0,null);
+			g.drawImage(fight_gui, 0, 0, null);
+		}
 
 		g.dispose();
 		bs.show();
@@ -153,6 +167,10 @@ public class Game extends Canvas implements Runnable {
 		addMouseMotionListener(mouse);
 		addMouseWheelListener(mouse);
 
+		
+		fightscene = ImageUtils.loadImage("/Maps/fightscene.png");
+		fight_gui = ImageUtils.loadImage("/Gui/fight_gui.png");
+		
 		gui.init();
 
 		handler.ChangeMusic(1,1,false);
