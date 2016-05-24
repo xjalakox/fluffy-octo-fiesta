@@ -142,8 +142,7 @@ public class Game extends Canvas implements Runnable {
 		
 		
 		
-		if(!fighting){
-			System.out.println("WHY?");
+		if(fighting){
 			g.drawImage(fightscene , 0, 0,null);
 			g.drawImage(fight_gui, 0, 0, null);
 		}
