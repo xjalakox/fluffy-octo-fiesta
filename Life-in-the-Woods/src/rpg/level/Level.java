@@ -36,9 +36,7 @@ public class Level {
 	public List<Entity> entities = new ArrayList<Entity>();
 	public List<BackgroundTile> btile = new ArrayList<BackgroundTile>();
 	public List<Tile> tiles = new ArrayList<Tile>();
-	// npc test2 = new
-	// npc(2200,2500,64,84,Id.blacksmith,"Oma",this,rpg.quest.Quest.quests[1]);
-
+	
 	private JSONObject levelData;
 
 	public Level(String path) {
@@ -104,8 +102,8 @@ public class Level {
 		switch (path) {
 		case "Maps/map1_roof.json":
 			addEntity(new Player(g.getX(), g.getY(), 64, 84, Id.player, this, Game.key));
-			addEntity(new Schmied(3500, 3540, 64, 84, 108, this));
-			addEntity(new test(3200, 3200, 64, 84, 180, this, new Fight(10, 1, 10, 1000, 10)));
+			addEntity(new Schmied(2500, 2540, 64, 84, 108, this));
+			addEntity(new test(2500, 2500, 64, 84, 180, this, new Fight(10, 1, 10, 1000, 10)));
 			break;
 		case "Maps/map1_noroof.json":
 			addEntity(new Player(3500, 3500, 64, 84, Id.player, this, Game.key));

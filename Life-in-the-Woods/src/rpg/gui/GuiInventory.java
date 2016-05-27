@@ -87,5 +87,9 @@ public class GuiInventory extends GuiElement {
 	public void updateInventory() {
 		updateInv = true;
 	}
+	
+	public Inventory getInv() {
+		return inventory;
+	}
 
 }

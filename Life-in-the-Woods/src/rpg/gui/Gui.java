@@ -8,6 +8,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 
 import rpg.KeyInput;
+import rpg.inventory.Inventory;
 
 public class Gui {
 
@@ -113,5 +114,14 @@ public class Gui {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public Inventory getInventory() {
+		for(GuiElement element : elements) {
+			if(element instanceof GuiInventory) {
+				return ((GuiInventory)element).getInv();
+			}
+		}
+		return null;
 	}
 }

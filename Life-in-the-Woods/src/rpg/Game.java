@@ -70,7 +70,7 @@ public class Game extends Canvas implements Runnable {
 	
 	public static Texts texte = new Texts();
 
-	Gui gui = new Gui();
+	public static Gui gui = new Gui();
 	TextDraw draw = new TextDraw();
 
 	private BufferedImage fightscene,fight_gui;

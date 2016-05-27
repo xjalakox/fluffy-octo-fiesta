@@ -73,6 +73,15 @@ public class Inventory {
 		}
 		return -1;
 	}
+	
+	public Item hasItem(String name) {
+		for(int i = 0; i < items.length; i++) {
+			if(items[i] != null && items[i].getName().equals(name)) {
+				return items[i];
+			}
+		}
+		return null;
+	}
 
 	public int getFreeSlot() {
 		for (int i = 0; i < items.length; i++) {

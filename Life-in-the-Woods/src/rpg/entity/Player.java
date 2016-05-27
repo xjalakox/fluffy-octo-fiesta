@@ -9,6 +9,7 @@ import java.awt.Rectangle;
 import rpg.Game;
 import rpg.Id;
 import rpg.KeyInput;
+import rpg.inventory.Item;
 import rpg.level.Level;
 import rpg.tile.Tile;
 
@@ -131,11 +132,18 @@ public class Player extends Entity {
 				}
 			}
 		}
+		
+		
 		for(Entity en:  level.entities) {
 			if(en.getId()==Id.blacksmith){
 				if(getBounds().intersects(en.getBoundsBottom())){
 					if(key.talk_npc&&!talking_with_npc){
 						en.facing = 2;
+						Item i = Game.gui.getInventory().hasItem("Kirsche");
+						if(i != null) {
+							System.out.println(i.getName());
+							System.out.println(i.getAnzahl());
+						}
 						((npc)en).talk();
 						//((npc)en).setTextId(1);
 						Game.texte.saveTexts();
@@ -181,6 +189,8 @@ public class Player extends Entity {
 					fighting = true;
 				}
 			}
+			
+			
 		}
 		
 		return false;
